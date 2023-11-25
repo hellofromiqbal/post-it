@@ -11,7 +11,7 @@ const SignUpPage = () => {
           <p className='ps-1 font-medium text-sm md:text-base'>Post your thoughts freely.</p>
         </div>
       </div>
-      <div className='basis-1/2 md:basis-1/2 bg-slate-100 py-8 flex items-start lg:items-center overflow-auto'>
+      <div className='basis-1/2 md:basis-1/2 bg-slate-100 py-8 flex items-start lg:items-center h-max md:h-full'>
         <div className='flex flex-col px-8 md:px-0 gap-2 w-full md:w-2/3 mx-auto'>
           <SignUpForm/>
           <p>Already have an account? <Link href="/" className='text-blue-500'>Sign In</Link> now.</p>
