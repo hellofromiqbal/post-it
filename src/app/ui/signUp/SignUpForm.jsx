@@ -54,16 +54,14 @@ const SignUpForm = () => {
           className='px-4 py-2 border'
           {...register('confirmPassword')}
         />
-        {errors &&
-          <div className='bg-red-200'>
-            <ul className='list-disc px-6'>
-              {errors.fullname && <li><small>{errors.fullname.message}</small></li>}
-              {errors.fullname && <li><small>{errors.email.message}</small></li>}
-              {errors.fullname && <li><small>{errors.password.message}</small></li>}
-              {errors.fullname && <li><small>{errors.confirmPassword.message}</small></li>}
-            </ul>
-          </div>
-        }
+        <div className='bg-red-200'>
+          <ul className='list-disc px-6'>
+            {errors.fullname && <li><small>{errors.fullname.message}</small></li>}
+            {errors.email && <li><small>{errors.email.message}</small></li>}
+            {errors.password && <li><small>{errors.password.message}</small></li>}
+            {errors.confirmPassword && <li><small>{errors.confirmPassword.message}</small></li>}
+          </ul>
+        </div>
       </div>
       <button className='px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium transition duration-150'>Sign In</button>
     </form>
