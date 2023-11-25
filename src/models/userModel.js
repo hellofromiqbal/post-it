@@ -22,8 +22,8 @@ const userSchema = new Schema({
   verifyEmailTokenExpiryDate: Date,
   resetPasswordToken: String,
   resetPasswordTokenExpiryDate: Date,
-});
+}, { timestamps: true });
 
-const User = mongoose.models.User || mongoose.model("user", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

@@ -4,8 +4,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 
 const SignUpForm = () => {
+  const router = useRouter();
+
   const signUpFormSchema = z.object({
     fullname: z.string({
       required_error: "Fullname is required.",
@@ -23,8 +26,21 @@ const SignUpForm = () => {
 
   const { register, handleSubmit, formState: {errors} } = useForm({ resolver: zodResolver(signUpFormSchema)});
 
-  const submittedData = (data) => {
-    console.log(data);
+  const submittedData = async (data) => {
+    try {
+      const res = await fetch("/api/users", {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if(!res.ok) {
+        throw new Error("Failed to create new user.");
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    };
   };
 
   return (
