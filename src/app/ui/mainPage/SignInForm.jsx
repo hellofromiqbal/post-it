@@ -34,13 +34,13 @@ const SignInForm = () => {
         <input
           type="email"
           placeholder='Email'
-          className='px-4 py-2'
+          className='px-4 py-2 rounded-sm'
           {...register("email")}
         />
         <input
           type="password"
           placeholder='Password'
-          className='px-4 py-2'
+          className='px-4 py-2 rounded-sm'
           {...register("password")}
         />
         <div className='bg-red-200'>
@@ -49,7 +49,7 @@ const SignInForm = () => {
           </ul>
         </div>
       </div>
-      <button className={`px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium transition duration-150`}>Sign In</button>
+      <button className='px-4 py-2 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-full transition duration-150'>Sign In</button>
     </form>
   )
 };

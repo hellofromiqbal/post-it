@@ -49,25 +49,25 @@ const SignUpForm = () => {
         <input
           type="text"
           placeholder='Fullname'
-          className='px-4 py-2 border'
+          className='px-4 py-2 border rounded-sm'
           {...register('fullname')}
         />
         <input
           type="email"
           placeholder='Email'
-          className='px-4 py-2 border'
+          className='px-4 py-2 border rounded-sm'
           {...register('email')}
         />
         <input
           type="password"
           placeholder='Password'
-          className='px-4 py-2 border'
+          className='px-4 py-2 border rounded-sm'
           {...register('password')}
         />
         <input
           type="password"
           placeholder='Confirm password'
-          className='px-4 py-2 border'
+          className='px-4 py-2 border rounded-sm'
           {...register('confirmPassword')}
         />
         <div className='bg-red-200'>
@@ -79,7 +79,7 @@ const SignUpForm = () => {
           </ul>
         </div>
       </div>
-      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium transition duration-150'>Sign Up</button>
+      <button className='px-4 py-2 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-full transition duration-150'>Sign Up</button>
     </form>
   )
 };
