@@ -49,7 +49,7 @@ const SignInForm = () => {
           </ul>
         </div>
       </div>
-      <button className={`px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium transition duration-150`}>Sign In</button>
+      <button className={`px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium transition duration-150`}>Sign In</button>
     </form>
   )
 };
