@@ -21,7 +21,7 @@ const SignInForm = () => {
       if(!res.ok) {
         throw new Error("Invalid email or password.");
       } else {
-        router.push("/dashboard");
+        router.push("/feed");
       };
     } catch (error) {
       setErrors(error.message);
