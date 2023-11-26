@@ -2,13 +2,14 @@ import connectMongoDB from "@/libs/mongodb";
 import User from "@/models/userModel";
 import bcryptjs from 'bcryptjs';
 import { NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
 
 export const POST = async (request) => {
   try {
     await connectMongoDB();
     const reqData = await request.json();
 
-    // Check if user is exist
+    // Existing User Checking By Email
     const isUserExist = await User.findOne({ email: reqData.email });
     if(!isUserExist) {
       return NextResponse.json({
@@ -17,19 +18,25 @@ export const POST = async (request) => {
       }, { status: 400 });
     };
 
-    // Password validation
+    // Password Validation
     const isPasswordMatch = await bcryptjs.compare(reqData.password, isUserExist.password);
-    console.log(isPasswordMatch);
     if(!isPasswordMatch) {
       return NextResponse.json({
         success: false,
         message: "Invalid password."
       }, { status: 400 });
     };
-    return NextResponse.json({
+
+    // JWT Login Token Generation
+    const tokenPayload = { ...isUserExist };
+    const token = jwt.sign(tokenPayload, process.env.SECRET_TOKEN);
+    const response = NextResponse.json({
       success: true,
-      message: "Password is valid."
+      message: "Successfully signed in."
     }, { status: 200 });
+    response.cookies.set("pit", token);
+
+    return response;
   } catch (error) {
     return NextResponse.json({
       success: false,
