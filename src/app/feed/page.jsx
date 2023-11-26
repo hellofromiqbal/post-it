@@ -2,8 +2,8 @@ import React from 'react';
 
 const FeedPage = () => {
   return (
-    <main>
-      <h1>Feed Page</h1>
+    <main className='max-w-6xl mx-auto min-h-screen'>
+      <h1 className='text-white text-2xl font-semibold'>Feed Page</h1>
     </main>
   )
 };
