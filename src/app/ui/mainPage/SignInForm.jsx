@@ -43,11 +43,9 @@ const SignInForm = () => {
           className='px-4 py-2 rounded-sm'
           {...register("password")}
         />
-        <div className='bg-red-200'>
-          <ul className='list-disc px-6'>
-            {errors && <li><small>{errors}</small></li>}
-          </ul>
-        </div>
+        <ul className='list-disc px-6'>
+          {errors && <li className='text-white opacity-80'><small>{errors}</small></li>}
+        </ul>
       </div>
       <button className='px-4 py-2 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-full transition duration-150'>Sign In</button>
     </form>

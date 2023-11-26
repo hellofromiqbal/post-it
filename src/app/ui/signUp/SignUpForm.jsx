@@ -70,14 +70,12 @@ const SignUpForm = () => {
           className='px-4 py-2 border rounded-sm'
           {...register('confirmPassword')}
         />
-        <div className='bg-red-200'>
-          <ul className='list-disc px-6'>
-            {errors.fullname && <li><small>{errors.fullname.message}</small></li>}
-            {errors.email && <li><small>{errors.email.message}</small></li>}
-            {errors.password && <li><small>{errors.password.message}</small></li>}
-            {errors.confirmPassword && <li><small>{errors.confirmPassword.message}</small></li>}
-          </ul>
-        </div>
+        <ul className='list-disc px-6'>
+          {errors.fullname && <li className='text-white opacity-80'><small>{errors.fullname.message}</small></li>}
+          {errors.email && <li className='text-white opacity-80'><small>{errors.email.message}</small></li>}
+          {errors.password && <li className='text-white opacity-80'><small>{errors.password.message}</small></li>}
+          {errors.confirmPassword && <li className='text-white opacity-80'><small>{errors.confirmPassword.message}</small></li>}
+        </ul>
       </div>
       <button className='px-4 py-2 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-full transition duration-150'>Sign Up</button>
     </form>
