@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} max-w-[1440px] mx-auto bg-dark`}>
+      <body className={`${inter.className} max-w-[1440px] mx-auto`}>
         <Navbar/>
         <main className='max-w-6xl mx-auto min-h-screen flex gap-4 py-4'>
           <div className='basis-1/4'>
