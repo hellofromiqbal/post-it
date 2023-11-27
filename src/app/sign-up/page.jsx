@@ -4,7 +4,7 @@ import SignUpForm from '../ui/signUp/SignUpForm';
 
 const SignUpPage = () => {
   return (
-    <main className="flex flex-col lg:flex-row h-screen">
+    <main className="flex flex-col lg:flex-row h-screen bg-gradient-to-b from-gray-800 via-gray-900 to-black">
       <div className='basis-1/2 md:basis-1/2 flex justify-center items-center'>
         <div className='flex flex-col text-white'>
         <h1 className='font-extrabold text-6xl md:text-8xl'>Post<span className='text-green-400'>It</span></h1>

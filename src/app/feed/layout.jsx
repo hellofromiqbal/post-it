@@ -13,9 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} max-w-[1440px] mx-auto`}>
-        <Navbar/>
+    <div className='bg-gradient-to-b from-gray-800 via-gray-900 to-black'>
+      <Navbar/>
         <main className='max-w-6xl mx-auto min-h-screen flex gap-4 py-4'>
           <div className='basis-1/4'>
             <LeftSide/>
@@ -27,7 +26,6 @@ export default function RootLayout({ children }) {
             <RightSide/>
           </div>
         </main>
-      </body>
-    </html>
+    </div>
   )
 }
