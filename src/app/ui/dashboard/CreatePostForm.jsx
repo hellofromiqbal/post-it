@@ -1,12 +1,27 @@
 "use client"
 
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreatePostForm = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
-  const submittedData = (data) => {
-    console.log(data);
+  const submittedData = async (data) => {
+    try {
+      const res = await fetch("/api/posts/create", {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if(!res.ok) {
+        throw new Error("Failed to post.")
+      } else {
+        router.refresh();
+      };
+    } catch (error) {
+      console.log(error.message);
+    };
   };
 
   return (
