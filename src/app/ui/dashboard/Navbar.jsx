@@ -10,6 +10,7 @@ import {
   IoLogOut
 } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
+import SignOutButton from './SignOutButton';
 
 const Navbar = () => {
   return (
@@ -38,10 +39,7 @@ const Navbar = () => {
         <FaUserCircle size={25}/>
         <span>Profile</span>
       </Link>
-      <Link href="/dashboard/sign-out" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
-        <IoLogOut size={25}/>
-        <span>Sign Out</span>
-      </Link>
+      <SignOutButton/>
     </nav>
   )
 };
