@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const TrendingList = () => {
   return (
-    <ul className='flex flex-col'>
+    <ul className='bg-softDark shadow-md rounded-md overflow-hidden flex flex-col'>
       <Link href="/dashboard/" className='p-4 hover:bg-green-500 text-light hover:text-black flex flex-col'>
         <small className='text-xs font-semibold opacity-70'>Trending in England</small>
         <h3 className='text-lg font-bold'>Beer</h3>

@@ -3,7 +3,7 @@ import TrendingList from './TrendingList';
 
 const RightSide = () => {
   return (
-    <div className='bg-softDark shadow-md rounded-md overflow-hidden'>
+    <div className='flex flex-col gap-4'>
       <TrendingList/>
     </div>
   )
