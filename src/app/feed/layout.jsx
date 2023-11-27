@@ -15,17 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <div className='bg-gradient-to-b from-gray-800 via-gray-900 to-black'>
       <Navbar/>
-        <main className='max-w-6xl mx-auto min-h-screen flex gap-4 py-4'>
-          <div className='basis-1/4'>
-            <LeftSide/>
-          </div>
-          <div className='basis-2/4'>
-            {children}
-          </div>
-          <div className='basis-1/4'>
-            <RightSide/>
-          </div>
-        </main>
-    </div>
+      <main className='max-w-6xl mx-auto min-h-screen flex gap-4 py-4'>
+        <section className='basis-1/4'>
+          <LeftSide/>
+        </section>
+        <section className='basis-2/4'>
+          {children}
+        </section>
+        <section className='basis-1/4'>
+          <RightSide/>
+        </section>
+      </main>
+  </div>
   )
 }
