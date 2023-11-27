@@ -14,7 +14,7 @@ const CreatePostForm = () => {
         placeholder='Post description'
         className='px-4 py-2 bg-transparent border rounded-md resize-none'
       ></textarea>
-      <button className='px-4 py-2 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-full transition duration-150'>Post</button>
+      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Post</button>
     </form>
   )
 };
