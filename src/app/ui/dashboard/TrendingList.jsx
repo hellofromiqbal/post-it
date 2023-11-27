@@ -21,7 +21,7 @@ const TrendingList = () => {
       </Link>
       <Link href="/dashboard/" className='p-4 hover:bg-green-500 text-light hover:text-black flex flex-col'>
         <small className='text-xs font-semibold opacity-70'>Trending in Norway</small>
-        <h3 className='text-lg font-bold'>Rishi Sunak</h3>
+        <h3 className='text-lg font-bold'>Winter Is Coming</h3>
         <small className='text-xs font-semibold opacity-70'>17.3K posts</small>
       </Link>
     </ul>
