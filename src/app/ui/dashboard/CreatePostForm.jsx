@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 const CreatePostForm = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
     try {
       const res = await fetch("/api/posts/create", {
@@ -17,6 +17,7 @@ const CreatePostForm = () => {
       if(!res.ok) {
         throw new Error("Failed to post.")
       } else {
+        reset();
         router.refresh();
       };
     } catch (error) {
