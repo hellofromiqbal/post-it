@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 import {
   IoHome,
-  IoSearchOutline,
+  IoSearch,
   IoNotifications,
   IoMail,
   IoPeople,
   IoLogOut
 } from "react-icons/io5";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -19,7 +19,7 @@ const Navbar = () => {
         <span>Home</span>
       </Link>
       <Link href="/dashboard/explore" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
-        <IoSearchOutline size={25}/>
+        <IoSearch size={25}/>
         <span>Explore</span>
       </Link>
       <Link href="/dashboard/notifications" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
@@ -35,7 +35,7 @@ const Navbar = () => {
         <span>Friends</span>
       </Link>
       <Link href="/dashboard/profile" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
-        <FaRegUserCircle size={25}/>
+        <FaUserCircle size={25}/>
         <span>Profile</span>
       </Link>
       <Link href="/dashboard/sign-out" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
