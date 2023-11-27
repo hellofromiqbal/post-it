@@ -12,7 +12,7 @@ export const POST = async (request) => {
     const userToken = await request.cookies.get("pit");
     const userDetails = jwt.verify(userToken.value, process.env.SECRET_TOKEN)._doc;
 
-    await Post.create({text, userId: userDetails._id});
+    await Post.create({ userId: userDetails._id, username: userDetails.username, text });
     return NextResponse.json({
       success: true,
       message: 'Post has been posted.'

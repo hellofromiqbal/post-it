@@ -27,8 +27,8 @@ const Feeds = () => {
           </div>
           <div className='flex flex-col gap-2'>
             <div className='flex flex-col'>
-              <h2 className='font-semibold'>@pedromachado</h2>
-              <p className='opacity-70'>Only when I change my browser Tab and then change Tab into my application again the client-side code is getting fetched and executed.</p>
+              <h2 className='font-semibold'>{post.username}</h2>
+              <p className='opacity-70'>{post.text}</p>
             </div>
             <div className='flex justify-end items-center gap-10 text-light'>
               <Link href="#" className='flex gap-2 items-center'>
