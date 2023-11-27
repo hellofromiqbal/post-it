@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatePostForm from '../ui/feed/CreatePostForm';
+import CreatePostForm from '../ui/dashboard/CreatePostForm';
 
 const FeedPage = () => {
   return (
