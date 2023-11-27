@@ -29,12 +29,14 @@ export const POST = async (request) => {
 
     // JWT Login Token Generation
     const tokenPayload = { ...isUserExist };
-    const token = jwt.sign(tokenPayload, process.env.SECRET_TOKEN);
+    const token = jwt.sign(tokenPayload, process.env.SECRET_TOKEN, {expiresIn: '1d'});
+    
     const response = NextResponse.json({
       success: true,
       message: "Successfully signed in."
     }, { status: 200 });
-    response.cookies.set("pit", token);
+    
+    response.cookies.set("pit", token, { httpOnly: true });
 
     return response;
   } catch (error) {
