@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 const LeftSide = () => {
   return (
-    <div className='bg-softDark shadow-md rounded-md overflow-hidden'>
+    <div className='flex flex-col gap-4'>
       <Navbar/>
     </div>
   )

@@ -13,7 +13,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <nav className='flex flex-col'>
+    <nav className='flex flex-col bg-softDark shadow-md rounded-md overflow-hidden'>
       <Link href="/dashboard/" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
         <IoHome size={25}/>
         <span>Home</span>
