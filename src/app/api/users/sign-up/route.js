@@ -22,7 +22,7 @@ export const POST = async (request) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     // Generate random username
-    const username = 'user' + salt.slice(0, 4);
+    const username = '@user' + salt.slice(0, 4);
     console.log(username);
 
     // New user creation process
