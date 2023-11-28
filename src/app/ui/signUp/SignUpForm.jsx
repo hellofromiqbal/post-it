@@ -28,7 +28,7 @@ const SignUpForm = () => {
 
   const submittedData = async (data) => {
     try {
-      const res = await fetch("/api/users", {
+      const res = await fetch("/api/users/sign-up", {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(data)
