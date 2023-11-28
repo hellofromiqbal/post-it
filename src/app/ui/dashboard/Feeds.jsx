@@ -25,10 +25,13 @@ const Feeds = () => {
               <Image src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt='profpic' fill className='object-cover'/>
             </div>
           </div>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 w-full'>
             <div className='flex flex-col'>
-              <h2 className='font-semibold'>{post.username}</h2>
-              <p className='opacity-70'>{post.text}</p>
+              <div className='flex gap-2 items-center'>
+                <h2 className='font-semibold'>{post.authorFullname}</h2>
+                <p className='text-sm opacity-70'>{post.authorUsername}</p>
+              </div>
+              <p className='opacity-70'>{post.textContent}</p>
             </div>
             <div className='flex justify-end items-center gap-10 text-light'>
               <Link href="#" className='flex gap-2 items-center'>

@@ -1,15 +1,19 @@
 import mongoose, { Schema } from 'mongoose';
 
 const postSchema = new Schema({
-  userId: {
+  authorId: {
     type: String,
     required: true
   },
-  username: {
+  authorUsername: {
     type: String,
     required: true
   },
-  text: {
+  authorFullname: {
+    type: String,
+    required: true
+  },
+  textContent: {
     type: String,
   }
 }, { timestamps: true });

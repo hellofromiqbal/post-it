@@ -6,13 +6,18 @@ import { NextResponse } from 'next/server';
 export const POST = async (request) => {
   try {
     await connectMongoDB();
-    const { text } = await request.json();
+    const { textContent } = await request.json();
 
     // Decode user token
     const userToken = await request.cookies.get("pit");
     const userDetails = jwt.verify(userToken.value, process.env.SECRET_TOKEN)._doc;
 
-    await Post.create({ userId: userDetails._id, username: userDetails.username, text });
+    await Post.create({
+      authorId: userDetails._id,
+      authorUsername: userDetails.username,
+      authorFullname: userDetails.fullname,
+      textContent
+    });
     return NextResponse.json({
       success: true,
       message: 'Post has been posted.'
