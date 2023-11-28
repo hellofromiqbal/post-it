@@ -14,10 +14,7 @@ const Feeds = () => {
   }, []);
 
   return (
-    <div className='bg-softDark rounded-md shadow-md text-light'>
-      <div className='px-4 py-2'>
-        <h2 className='font-bold text-xl'>Feeds</h2>
-      </div>
+    <div className='bg-softDark rounded-md shadow-md text-light overflow-hidden'>
       {posts.map(post => (
         <PostCard key={post._id} post={post}/>
       ))}

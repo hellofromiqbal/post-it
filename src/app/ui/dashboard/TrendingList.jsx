@@ -6,9 +6,6 @@ import Link from 'next/link';
 const TrendingList = () => {
   return (
     <div className='bg-softDark shadow-md rounded-md text-light overflow-hidden flex flex-col'>
-      <div className='px-4 py-2'>
-        <h2 className='font-bold text-xl'>Hot Topic</h2>
-      </div>
       <ul className='flex flex-col'>
         <Link href="/dashboard/" className='p-4 hover:bg-green-500 text-light hover:text-black flex flex-col'>
           <small className='text-xs font-semibold opacity-70'>Trending in Norway</small>
