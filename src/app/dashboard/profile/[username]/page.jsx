@@ -1,22 +1,21 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { IoLocation, IoCalendar } from "react-icons/io5";
 
-const getUserDetails = async (username) => {
-  try {
-    const res = await fetch(`${process.env.DOMAIN}/api/users/profile/${username}`, { cache: 'no-store' });
-    if(!res.ok) {
-      throw new Error("Failed to fetch user data.");
+const ProfilePage = ({params}) => {
+  const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    try {
+      fetch(`/api/users/profile/${params.username}`, { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => setUserDetails(data.data))
+        .catch(err => console.log(err.message));
+    } catch (error) {
+      console.log(error.message);
     };
-    return res.json();
-  } catch (error) {
-    console.log(error.message);
-  };
-};
-
-
-const ProfilePage = async ({params}) => {
-  const userDetails = await getUserDetails(params.username);
+  }, []);
   return (
     <div className='flex flex-col gap-4'>
       <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
@@ -27,8 +26,8 @@ const ProfilePage = async ({params}) => {
         </div>
         <div className='flex flex-col gap-2 p-4'>
           <div>
-            <h2 className='font-bold text-xl'>{userDetails.data.fullname}</h2>
-            <p className='text-sm opacity-70'>{userDetails.data.username}</p>
+            <h2 className='font-bold text-xl'>{userDetails.fullname}</h2>
+            <p className='text-sm opacity-70'>{userDetails.username}</p>
           </div>
           <div className='flex items-center gap-4'>
             <span className='flex items-center gap-1 opacity-70'>

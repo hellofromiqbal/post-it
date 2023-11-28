@@ -1,4 +1,6 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowLeft, FaHeart, FaShare } from "react-icons/fa6";
@@ -6,21 +8,18 @@ import { FaComment } from "react-icons/fa";
 import CreateCommentForm from '@/app/ui/dashboard/CreateCommentForm';
 import Comments from '@/app/ui/dashboard/Comments';
 
-
-const getPostData = async (postId) => {
-  try {
-    const res = await fetch(`${process.env.DOMAIN}/api/posts/read/${postId}`, { cache: 'no-store' });
-    if(!res.ok) {
-      throw new Error("Failed to fetch post data.");
-    }
-    return res.json();
-  } catch (error) {
-    console.log(error.message);
-  };
-};
-
-const PostPage = async ({params}) => {
-  const postData = await getPostData(params.id);
+const PostPage = ({params}) => {
+  const [postData, setPostData] = useState({});
+  useEffect(() => {
+    try {
+      fetch(`/api/posts/read/${params.id}`, { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => setPostData(data.data))
+        .catch(err => err.message);
+    } catch (error) {
+      console.log(error.message);
+    };
+  }, []);
   return (
     <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 overflow-hidden'>
       <div className='p-4'>
@@ -31,7 +30,7 @@ const PostPage = async ({params}) => {
       </div>
       <div className='flex flex-row gap-4 px-4'>
         <div>
-          <Link href={`/dashboard/profile/${postData.data.authorUsername}`}>
+          <Link href={`/dashboard/profile/${postData.authorUsername}`}>
             <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>
               <Image src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt='profpic' fill className='object-cover'/>
             </div>
@@ -40,14 +39,14 @@ const PostPage = async ({params}) => {
         <div className='flex flex-col gap-2 w-full'>
           <div className='flex flex-col'>
             <div className='flex gap-2 items-center'>
-              <Link href={`/dashboard/profile/${postData.data.authorUsername}`} className='font-semibold'>
-                {postData.data.authorFullname}
+              <Link href={`/dashboard/profile/${postData.authorUsername}`} className='font-semibold'>
+                {postData.authorFullname}
               </Link>
-              <Link href={`/dashboard/profile/${postData.data.authorUsername}`} className='text-sm opacity-70'>
-                {postData.data.authorUsername}
+              <Link href={`/dashboard/profile/${postData.authorUsername}`} className='text-sm opacity-70'>
+                {postData.authorUsername}
               </Link>
             </div>
-            <p className='opacity-70'>{postData.data.textContent}</p>
+            <p className='opacity-70'>{postData.textContent}</p>
           </div>
           <div className='flex justify-end items-center gap-10 text-light'>
             <Link href="#" className='flex gap-2 items-center'>
