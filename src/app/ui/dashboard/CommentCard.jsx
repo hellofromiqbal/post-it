@@ -28,16 +28,16 @@ const CommentCard = () => {
         </div>
         <div className='flex justify-end items-center gap-10 text-light'>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaHeart size={20}/>
-            <span className='text-sm opacity-70'>1.6K</span>
+            <FaHeart size={15}/>
+            <span className='text-xs opacity-70'>1.6K</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaComment size={20}/>
-            <span className='text-sm opacity-70'>756</span>
+            <FaComment size={15}/>
+            <span className='text-xs opacity-70'>756</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaShare size={20}/>
-            <span className='text-sm opacity-70'>800</span>
+            <FaShare size={15}/>
+            <span className='text-xs opacity-70'>800</span>
           </Link>
         </div>
       </div>
