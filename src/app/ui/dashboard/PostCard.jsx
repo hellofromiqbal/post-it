@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaShare } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
-import DeletePostButton from './DeletePostButton';
 
 const PostCard = ({ post }) => {
   return (
@@ -41,7 +40,6 @@ const PostCard = ({ post }) => {
               <FaShare size={20}/>
               <span className='text-sm opacity-70'>800</span>
             </Link>
-            <DeletePostButton postId={post._id}/>
           </div>
         </div>
       </Link>
