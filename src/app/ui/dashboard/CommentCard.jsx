@@ -6,7 +6,7 @@ import { FaComment } from "react-icons/fa";
 
 const CommentCard = () => {
   return (
-    <div className='flex flex-row gap-4 px-4 py-2 border-b border-gray-700'>
+    <div className='flex flex-row gap-4 px-4 py-2 border-t border-gray-700'>
       <div>
         <Link href={`/dashboard/profile/`}>
           <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>

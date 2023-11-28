@@ -22,8 +22,8 @@ const getPostData = async (postId) => {
 const PostPage = async ({params}) => {
   const postData = await getPostData(params.id);
   return (
-    <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-4 overflow-hidden'>
-      <div className='px-4 pt-4'>
+    <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 overflow-hidden'>
+      <div className='p-4'>
         <Link href="/dashboard" className='flex gap-2 items-center opacity-70 w-max'>
             <FaArrowLeft size={15}/>
             <span>Back</span>
@@ -65,7 +65,7 @@ const PostPage = async ({params}) => {
           </div>
         </div>
       </div>
-      <div className='px-4 pb-4 border-b border-gray-700'>
+      <div className='px-4 py-4'>
         <CreateCommentForm/>
       </div>
       <Comments/>
