@@ -2,8 +2,21 @@ import React from 'react'
 import Image from 'next/image';
 import { IoLocation, IoCalendar } from "react-icons/io5";
 
+const getUserDetails = async (username) => {
+  try {
+    const res = await fetch(`${process.env.DOMAIN}/api/users/profile/${username}`, { cache: 'no-store' });
+    if(!res.ok) {
+      throw new Error("Failed to fetch user data.");
+    };
+    return res.json();
+  } catch (error) {
+    console.log(error.message);
+  };
+};
 
-const ProfilePage = () => {
+
+const ProfilePage = async ({params}) => {
+  const userDetails = await getUserDetails(params.username);
   return (
     <div className='flex flex-col gap-4'>
       <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
@@ -14,8 +27,8 @@ const ProfilePage = () => {
         </div>
         <div className='flex flex-col gap-2 p-4'>
           <div>
-            <h2 className='font-bold text-xl'>Pedro Enrique Machado</h2>
-            <p className='text-sm opacity-70'>@user$2a$</p>
+            <h2 className='font-bold text-xl'>{userDetails.data.fullname}</h2>
+            <p className='text-sm opacity-70'>{userDetails.data.username}</p>
           </div>
           <div className='flex items-center gap-4'>
             <span className='flex items-center gap-1 opacity-70'>
