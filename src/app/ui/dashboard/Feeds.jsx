@@ -14,7 +14,10 @@ const Feeds = () => {
   }, []);
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='bg-softDark rounded-md shadow-md text-light'>
+      <div className='px-4 py-2'>
+        <h2 className='font-bold text-xl'>Feeds</h2>
+      </div>
       {posts.map(post => (
         <PostCard key={post._id} post={post}/>
       ))}

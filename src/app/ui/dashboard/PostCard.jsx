@@ -8,7 +8,7 @@ import { FaComment } from "react-icons/fa";
 
 const PostCard = ({ post }) => {
   return (
-    <div className='bg-softDark rounded-md shadow-md text-light'>
+    <div className='border-t border-gray-700'>
       <Link href={`/dashboard/posts/${post._id}`} className='flex flex-row gap-4 p-4'>
         <div>
           <Link href={`/dashboard/profile/${post.authorUsername}`}>
