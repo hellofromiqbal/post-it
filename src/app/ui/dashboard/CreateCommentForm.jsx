@@ -3,16 +3,25 @@
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-const CreateCommentForm = () => {
+
+const CreateCommentForm = ({ postId }) => {
   const router = useRouter();
+  const currentUser = useSelector(state => state.currentUser.value);
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
+    const newComment = {
+      authorId: currentUser._id,
+      authorFullname: currentUser.fullname,
+      authorUsername: currentUser.username,
+      textContent: data.textContent
+    };
     try {
-      const res = await fetch("/api/posts/create", {
+      const res = await fetch(`/api/posts/${postId}/comments`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(newComment)
       });
       if(!res.ok) {
         throw new Error("Failed to post.")
