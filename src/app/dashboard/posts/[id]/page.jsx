@@ -10,7 +10,7 @@ const PostPage = ({params}) => {
   const [postData, setPostData] = useState({});
   useEffect(() => {
     try {
-      fetch(`/api/posts/read/${params.id}`, { cache: 'no-store' })
+      fetch(`/api/posts/${params.id}`, { cache: 'no-store' })
         .then(res => res.json())
         .then(data => setPostData(data.data))
         .catch(err => err.message);

@@ -8,7 +8,7 @@ const Feeds = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("/api/posts/read", { cache: 'no-store' })
+    fetch("/api/posts/", { cache: 'no-store' })
       .then(res => res.json())
       .then(data => setPosts(data.data))
       .catch(err => console.log(err.message));

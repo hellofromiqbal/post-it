@@ -9,7 +9,7 @@ const CreatePostForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
     try {
-      const res = await fetch("/api/posts/create", {
+      const res = await fetch("/api/posts/", {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(data)
