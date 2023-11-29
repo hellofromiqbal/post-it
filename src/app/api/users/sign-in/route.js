@@ -33,7 +33,8 @@ export const POST = async (request) => {
     
     const response = NextResponse.json({
       success: true,
-      message: "Successfully signed in."
+      message: "Successfully signed in.",
+      data: isUserExist
     }, { status: 200 });
     
     response.cookies.set("pit", token, { httpOnly: true });
