@@ -1,15 +1,14 @@
-import { Inter } from 'next/font/google'
-import '../globals.css'
-import Navbar from '../ui/dashboard/Navbar'
-import LeftSide from '../ui/dashboard/LeftSide'
-import RightSide from '../ui/dashboard/RightSide'
+import { Inter } from 'next/font/google';
+import '../globals.css';
+import LeftSide from '../ui/dashboard/LeftSide';
+import RightSide from '../ui/dashboard/RightSide';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Feed | PostIt',
-  description: 'PostIt Feed Pages',
-}
+  title: 'Dashboard | PostIt',
+  description: 'PostIt Dashboard Pages',
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -28,6 +27,6 @@ export default function RootLayout({ children }) {
           <RightSide/>
         </section>
       </main>
-  </div>
+    </div>
   )
-}
+};
