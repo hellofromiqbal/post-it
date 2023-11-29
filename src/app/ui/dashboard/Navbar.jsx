@@ -12,8 +12,10 @@ import {
 } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import SignOutButton from './SignOutButton';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const currentUser = useSelector(state => state.currentUser.value);
   return (
     <nav className='flex flex-col bg-softDark shadow-md rounded-md overflow-hidden'>
       <Link href="/dashboard/" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
@@ -36,7 +38,7 @@ const Navbar = () => {
         <IoPeople size={25}/>
         <span>Friends</span>
       </Link>
-      <Link href="/dashboard/profile/@johndoe" className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
+      <Link href={`/dashboard/profile/${currentUser?.username}`} className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'>
         <FaUserCircle size={25}/>
         <span>Profile</span>
       </Link>
