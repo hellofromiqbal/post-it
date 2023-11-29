@@ -3,10 +3,17 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { IoLocation, IoCalendar } from "react-icons/io5";
-import { useSelector } from 'react-redux';
 
-const ProfilePage = () => {
-  const currentUser = useSelector(state => state.currentUser.value);
+const ProfilePage = ({params}) => {
+  const [userDetails, setUserDetails] = useState({});
+
+  useEffect(() => {
+    fetch(`/api/users/profile/${params.username}`, { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => setUserDetails(data.data))
+      .catch(err => err.message);
+  }, []);
+
   return (
     <div className='flex flex-col gap-4'>
       <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
@@ -17,8 +24,8 @@ const ProfilePage = () => {
         </div>
         <div className='flex flex-col gap-2 p-4'>
           <div>
-            <h2 className='font-bold text-xl'>{currentUser?.fullname}</h2>
-            <p className='text-sm opacity-70'>{currentUser?.username}</p>
+            <h2 className='font-bold text-xl'>{userDetails.fullname}</h2>
+            <p className='text-sm opacity-70'>{userDetails.username}</p>
           </div>
           <div className='flex items-center gap-4'>
             <span className='flex items-center gap-1 opacity-70'>
