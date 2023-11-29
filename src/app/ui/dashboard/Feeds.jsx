@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import PostCard from './PostCard';
+import ContentCard from './ContentCard';
 
 const Feeds = () => {
   const [posts, setPosts] = useState([]);
@@ -18,7 +18,7 @@ const Feeds = () => {
     <div className='bg-softDark rounded-md shadow-md text-light overflow-hidden'>
       {posts.map(post => (
         <Link key={post._id} href={`/dashboard/posts/${post._id}`}>
-          <PostCard post={post}/>
+          <ContentCard data={post}/>
         </Link>
       ))}
     </div>
