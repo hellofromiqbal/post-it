@@ -26,10 +26,7 @@ const CreatePostForm = () => {
   };
 
   return (
-    <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-2 pt-2 pb-4 px-4'>
-      <div className='flex justify-center items-center'>
-        <h1 className='text-light text-2xl font-extrabold'>Post<span className='text-softDark bg-green-500 px-1 rounded-md'>It</span></h1>
-      </div>
+    <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-2 p-4'>
       <form
         className='flex flex-col gap-4'
         onSubmit={handleSubmit(submittedData)}
