@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FaHeart, FaShare } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 
-const ContentCard = ({ data }) => {
+const ContentCard = ({ data, contentType = 'post' }) => {
   return (
     <div className='flex flex-row gap-4 w-full p-4'>
       <div>
@@ -28,18 +28,18 @@ const ContentCard = ({ data }) => {
           </div>
           <p className='opacity-70'>This is awesome.</p>
         </div>
-        <div className='flex justify-end items-center gap-10 text-light'>
+        <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaHeart size={20}/>
-            <span className='text-sm opacity-70'>1.6K</span>
+            <FaHeart size={contentType === 'post' ? 20 : 15}/>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>1.6K</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaComment size={20}/>
-            <span className='text-sm opacity-70'>756</span>
+            <FaComment size={contentType === 'post' ? 20 : 15}/>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>756</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
-            <FaShare size={20}/>
-            <span className='text-sm opacity-70'>800</span>
+            <FaShare size={contentType === 'post' ? 20 : 15}/>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>800</span>
           </Link>
         </div>
       </div>
