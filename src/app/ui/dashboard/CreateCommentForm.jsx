@@ -27,7 +27,7 @@ const CreateCommentForm = () => {
 
   return (
     <form
-      className='flex flex-col gap-4'
+      className='flex flex-col gap-4 p-4'
       onSubmit={handleSubmit(submittedData)}
     >
       <textarea
