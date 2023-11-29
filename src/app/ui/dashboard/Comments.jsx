@@ -1,24 +1,16 @@
 "use client"
 
 import React from 'react';
-import CommentCard from './CommentCard';
+import ContentCard from './ContentCard';
 
-const Comments = () => {
-  // const [posts, setPosts] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/api/posts/read", { cache: 'no-store' })
-  //     .then(res => res.json())
-  //     .then(data => setPosts(data.data))
-  //     .catch(err => console.log(err.message));
-  // }, []);
-
+const Comments = ({comments}) => {
   return (
     <div className='flex flex-col'>
-      <h1>This is comment section</h1>
-      {/* <CommentCard/>
-      <CommentCard/>
-      <CommentCard/> */}
+      {comments?.map(comment => (
+        <div key={comment._id} className='flex flex-row border-t border-gray-700'>
+          <ContentCard contentType='comment' data={comment}/>
+        </div>
+      ))}
     </div>
   )
 };

@@ -23,7 +23,7 @@ const PostPage = ({params}) => {
       <BackButton/>
       <ContentCard data={postData}/>
       <CreateCommentForm postId={postData._id}/>
-      <Comments/>
+      <Comments comments={postData.comments}/>
     </div>
   )
 };
