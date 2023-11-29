@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
-import PostCard from './PostCard';
+import React from 'react';
 import CommentCard from './CommentCard';
 
 const Comments = () => {
