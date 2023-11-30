@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaShare } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
+import DeleteButton from './DeleteButton';
 
 const ContentCard = ({ data, contentType = 'post' }) => {
   return (
@@ -41,6 +42,7 @@ const ContentCard = ({ data, contentType = 'post' }) => {
             <FaShare size={contentType === 'post' ? 20 : 15}/>
             <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>800</span>
           </Link>
+          <DeleteButton id={data?._id}/>
         </div>
       </div>
     </div>
