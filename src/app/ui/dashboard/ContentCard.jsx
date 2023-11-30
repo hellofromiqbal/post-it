@@ -6,8 +6,10 @@ import Link from 'next/link';
 import { FaHeart, FaShare } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 import DeleteButton from './DeleteButton';
+import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post' }) => {
+  const currentUser = useSelector(state => state.currentUser.value);
   return (
     <div className='flex flex-row gap-4 w-full p-4'>
       <div>
@@ -42,7 +44,9 @@ const ContentCard = ({ data, contentType = 'post' }) => {
             <FaShare size={contentType === 'post' ? 20 : 15}/>
             <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>800</span>
           </Link>
-          <DeleteButton id={data?._id}/>
+          {currentUser?._id === data?.authorId &&
+            <DeleteButton id={data?._id}/>
+          }
         </div>
       </div>
     </div>
