@@ -18,8 +18,8 @@ const CreateCommentForm = ({ postId }) => {
       textContent: data.textContent
     };
     try {
-      const res = await fetch(`/api/posts/${postId}/comments`, {
-        method: 'POST',
+      const res = await fetch(`/api/posts/${postId}`, {
+        method: 'PUT',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(newComment)
       });
