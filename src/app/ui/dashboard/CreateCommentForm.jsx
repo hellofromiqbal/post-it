@@ -12,20 +12,24 @@ const CreateCommentForm = ({ postId }) => {
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
     const newComment = {
+      postId: postId,
       authorId: currentUser._id,
-      authorFullname: currentUser.fullname,
       authorUsername: currentUser.username,
+      authorFullname: currentUser.fullname,
       textContent: data.textContent
     };
     try {
-      const res = await fetch(`/api/posts/${postId}`, {
-        method: 'PUT',
+      const res = await fetch(`/api/comments/`, {
+        cache: 'no-store',
+        method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(newComment)
       });
       if(!res.ok) {
         throw new Error("Failed to post.")
       } else {
+        const result = await res.json();
+        console.log(result.data);
         reset();
         router.refresh();
       };

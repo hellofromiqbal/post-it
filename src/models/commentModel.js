@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
-const postSchema = new Schema({
+const commentSchema = new Schema({
+  postId: {
+    type: String,
+    required: true
+  },
   authorId: {
     type: String,
     required: true
@@ -15,9 +19,10 @@ const postSchema = new Schema({
   },
   textContent: {
     type: String,
-  },
+    required: true
+  }
 }, { timestamps: true });
 
-const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+const Comment = mongoose.models.Comment || mongoose.model("Comment", commentSchema);
 
-export default Post;
+export default Comment;
