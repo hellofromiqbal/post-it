@@ -3,16 +3,16 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {};
 
 export const currentUserSlicer = createSlice({
-  name: 'counter',
+  name: 'currentUserDetails',
   initialState,
   reducers: {
-    saveCurrentUserDetails: (state, action) => {
+    fetchCurrentUserDetails: (state, action) => {
       state.value = action.payload;
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { saveCurrentUserDetails } = currentUserSlicer.actions;
+export const { fetchCurrentUserDetails } = currentUserSlicer.actions;
 
 export default currentUserSlicer.reducer
