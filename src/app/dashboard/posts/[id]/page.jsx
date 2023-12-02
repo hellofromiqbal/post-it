@@ -5,19 +5,11 @@ import CreateCommentForm from '@/app/ui/dashboard/CreateCommentForm';
 import Comments from '@/app/ui/dashboard/Comments';
 import ContentCard from '@/app/ui/dashboard/ContentCard';
 import BackButton from '@/app/ui/dashboard/BackButton';
+import { useSelector } from 'react-redux';
 
 const PostPage = ({params}) => {
-  const [postData, setPostData] = useState({});
-  useEffect(() => {
-    try {
-      fetch(`/api/posts/${params.id}`, { cache: 'no-store' })
-        .then(res => res.json())
-        .then(data => setPostData(data.data))
-        .catch(err => err.message);
-    } catch (error) {
-      console.log(error.message);
-    };
-  }, []);
+  const posts = useSelector(state => state.currentPosts.value);
+  const postData = posts.find(post => post._id === params.id);
   return (
     <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 overflow-hidden'>
       <BackButton/>
