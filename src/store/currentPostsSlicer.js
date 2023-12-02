@@ -11,13 +11,17 @@ export const currentPostsSlicer = createSlice({
     saveCurrentPosts: (state, action) => {
       state.value = action.payload;
     },
-    updateCurrentPosts: (state, action) => {
+    createPost: (state, action) => {
       state.value = [action.payload, ...state.value];
+    },
+    deletePost: (state, action) => {
+      console.log(action.payload);
+      state.value = state.value.filter(item => item._id !== action.payload);
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { saveCurrentPosts, updateCurrentPosts } = currentPostsSlicer.actions;
+export const { saveCurrentPosts, createPost, deletePost } = currentPostsSlicer.actions;
 
 export default currentPostsSlicer.reducer

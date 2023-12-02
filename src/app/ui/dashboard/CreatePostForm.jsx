@@ -1,8 +1,8 @@
 "use client"
 
-import { updateCurrentPosts } from '@/store/currentPostsSlicer';
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import { createPost } from '@/store/currentPostsSlicer';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -29,7 +29,7 @@ const CreatePostForm = () => {
         throw new Error("Failed to post.")
       } else {
         const result = await res.json();
-        dispatch(updateCurrentPosts(result.data));
+        dispatch(createPost(result.data));
         reset();
         router.refresh();
       };

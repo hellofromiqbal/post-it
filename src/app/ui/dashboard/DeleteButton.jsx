@@ -1,8 +1,11 @@
+import { deletePost } from '@/store/currentPostsSlicer';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 const DeleteButton = ({id}) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
@@ -10,6 +13,7 @@ const DeleteButton = ({id}) => {
       if(!res.ok) {
         throw new Error("Failed to delete post.");
       } else {
+        dispatch(deletePost(id));
         router.refresh();
       };
     } catch (error) {
