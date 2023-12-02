@@ -21,3 +21,21 @@ export const POST = async (request) => {
     });
   };
 };
+
+// READ ALL COMMENTS
+export const GET = async () => {
+  try {
+    await connectMongoDB();
+    const comments = await Comment.find();
+    return NextResponse.json({
+      success: true,
+      message: 'Successfully get comments.',
+      data: comments
+    }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: 'Error getting comments.'
+    }, { status: 500 });
+  };
+};
