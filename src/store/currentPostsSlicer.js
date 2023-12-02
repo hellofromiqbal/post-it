@@ -9,7 +9,6 @@ export const currentPostsSlicer = createSlice({
   initialState,
   reducers: {
     saveCurrentPosts: (state, action) => {
-      console.log(action.payload);
       state.value = action.payload;
     },
     updateCurrentPosts: (state, action) => {

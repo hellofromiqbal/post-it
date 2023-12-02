@@ -19,7 +19,7 @@ const Feeds = () => {
   return (
     <div className='bg-softDark rounded-md shadow-md text-light overflow-hidden'>
       {posts?.map(post => (
-        <Link key={post._id} href={`/dashboard/posts/${post._id}`}>
+        <Link key={post?._id} href={`/dashboard/posts/${post?._id}`}>
           <ContentCard data={post}/>
         </Link>
       ))}
