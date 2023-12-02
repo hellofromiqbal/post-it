@@ -1,13 +1,15 @@
 "use client"
 
+import { createComment } from '@/store/currentCommentsSlicer';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const CreateCommentForm = ({ postId }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser.value);
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
@@ -29,7 +31,7 @@ const CreateCommentForm = ({ postId }) => {
         throw new Error("Failed to post.")
       } else {
         const result = await res.json();
-        console.log(result.data);
+        dispatch(createComment(result.data));
         reset();
         router.refresh();
       };
