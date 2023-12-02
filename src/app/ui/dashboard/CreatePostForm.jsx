@@ -29,7 +29,6 @@ const CreatePostForm = () => {
         throw new Error("Failed to post.")
       } else {
         const result = await res.json();
-        console.log(result);
         dispatch(updateCurrentPosts(result.data));
         reset();
         router.refresh();

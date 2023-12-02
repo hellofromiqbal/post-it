@@ -12,10 +12,7 @@ export const currentPostsSlicer = createSlice({
       state.value = action.payload;
     },
     updateCurrentPosts: (state, action) => {
-      console.log(action.payload);
-      console.log([action.payload, ...state.value]);
       state.value = [action.payload, ...state.value];
-      console.log(state.value);
     }
   },
 })

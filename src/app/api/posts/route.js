@@ -1,5 +1,4 @@
 import connectMongoDB from "@/libs/mongodb"
-import jwt from 'jsonwebtoken';
 import Post from "@/models/postModel";
 import { NextResponse } from 'next/server';
 
@@ -8,13 +7,7 @@ export const POST = async (request) => {
   try {
     await connectMongoDB();
     const reqData = await request.json();
-
-    // Decode user token
-    // const userToken = await request.cookies.get("pit");
-    // const userDetails = jwt.verify(userToken.value, process.env.SECRET_TOKEN)._doc;
-
     const newPost = await Post.create(reqData);
-    
     return NextResponse.json({
       success: true,
       message: 'Post has been posted.',
