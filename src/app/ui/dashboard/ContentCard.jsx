@@ -44,8 +44,8 @@ const ContentCard = ({ data, contentType = 'post' }) => {
             <FaShare size={contentType === 'post' ? 20 : 15}/>
             <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>800</span>
           </Link>
-          {currentUser?._id === data?.authorId &&
-            <DeleteButton id={data?._id}/>
+          {currentUser?._id === data?.authorId && contentType === 'post' ?
+            <DeleteButton id={data?._id}/> : <DeleteButton id={data?._id} contentType='comment'/>
           }
         </div>
       </div>

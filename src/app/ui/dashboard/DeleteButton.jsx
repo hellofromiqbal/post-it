@@ -1,19 +1,24 @@
+import { deleteComment } from '@/store/currentCommentsSlicer';
 import { deletePost } from '@/store/currentPostsSlicer';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-const DeleteButton = ({id}) => {
+const DeleteButton = ({id, contentType = 'post'}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/posts/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${contentType === 'post' ? '/api/posts/' : '/api/comments/'}${id}`, { method: 'DELETE' });
       if(!res.ok) {
         throw new Error("Failed to delete post.");
       } else {
-        dispatch(deletePost(id));
+        if(contentType === 'post') {
+          dispatch(deletePost(id));
+        } else {
+          dispatch(deleteComment(id));
+        };
         router.refresh();
       };
     } catch (error) {
