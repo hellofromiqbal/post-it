@@ -10,12 +10,14 @@ import { useSelector } from 'react-redux';
 const PostPage = ({params}) => {
   const posts = useSelector(state => state.currentPosts.value);
   const postData = posts.find(post => post._id === params.id);
+  const allComments = useSelector(state => state.currentComments.value);
+  const postComments = allComments.filter(post => post.postId === params.id);
   return (
     <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 overflow-hidden'>
       <BackButton/>
       <ContentCard data={postData}/>
-      <CreateCommentForm postId={postData._id}/>
-      <Comments comments={postData.comments}/>
+      <CreateCommentForm postId={postData?._id}/>
+      <Comments comments={postComments}/>
     </div>
   )
 };
