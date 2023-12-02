@@ -1,22 +1,36 @@
 "use client"
 
+import { updateCurrentPosts } from '@/store/currentPostsSlicer';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
 
 const CreatePostForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.currentUser.value);
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
+    const newPost = {
+      authorId: currentUser?._id,
+      authorFullname: currentUser?.fullname,
+      authorUsername: currentUser?.username,
+      textContent: data.textContent
+    };
     try {
       const res = await fetch("/api/posts/", {
+        cache: 'no-store',
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(newPost)
       });
       if(!res.ok) {
         throw new Error("Failed to post.")
       } else {
+        const result = await res.json();
+        console.log(result);
+        dispatch(updateCurrentPosts(result.data));
         reset();
         router.refresh();
       };
