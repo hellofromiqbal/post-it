@@ -15,7 +15,7 @@ export const currentLikesSlicer = createSlice({
       state.value = [action.payload, ...state.value];
     },
     // deleteComment: (state, action) => {
-    //   state.value = state.value.filter(item => item._id !== action.payload);
+    //   state.value = state.value.filter(item => item.authorId !== action.payload);
     // }
   }
 });
