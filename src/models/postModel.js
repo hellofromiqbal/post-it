@@ -13,9 +13,12 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  textContent: {
+  authorProfilePictureUrl: {
     type: String,
   },
+  textContent: {
+    type: String,
+  }
 }, { timestamps: true });
 
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);

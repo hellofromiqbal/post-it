@@ -22,7 +22,7 @@ const ProfilePage = ({params}) => {
       <BackButton/>
       <div className='bg-light min-h-[180px] relative bg-[url("https://plus.unsplash.com/premium_photo-1665772800949-d16a87be214d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdvb2RzfGVufDB8fDB8fHww")] bg-center bg-cover bg-no-repeat'>
         <div className='w-[150px] h-[150px] rounded-full bg-light absolute -bottom-[75px] right-4 z-10 overflow-hidden place-self-center border-4 border-softDark'>
-          <Image src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt='profpic' fill className='object-cover'/>
+          <Image src={userDetails.profilePictureUrl} alt='profpic' fill className='object-cover'/>
         </div>
       </div>
       <div className='flex flex-col gap-2 p-4'>

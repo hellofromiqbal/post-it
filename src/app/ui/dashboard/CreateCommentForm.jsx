@@ -15,9 +15,10 @@ const CreateCommentForm = ({ postId }) => {
   const submittedData = async (data) => {
     const newComment = {
       postId: postId,
-      authorId: currentUser._id,
-      authorUsername: currentUser.username,
-      authorFullname: currentUser.fullname,
+      authorId: currentUser?._id,
+      authorUsername: currentUser?.username,
+      authorFullname: currentUser?.fullname,
+      authorProfilePictureUrl: currentUser?.profilePictureUrl,
       textContent: data.textContent
     };
     try {

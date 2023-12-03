@@ -12,13 +12,13 @@ import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
-
   return (
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
           <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>
-            <Image src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt='profpic' fill className='object-cover'/>
+            {/* <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/> */}
+            <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/>
           </div>
         </Link>
       </div>

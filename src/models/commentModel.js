@@ -17,6 +17,9 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
+  authorProfilePictureUrl: {
+    type: String
+  },
   textContent: {
     type: String,
     required: true

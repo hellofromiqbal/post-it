@@ -16,6 +16,7 @@ const CreatePostForm = () => {
       authorId: currentUser?._id,
       authorFullname: currentUser?.fullname,
       authorUsername: currentUser?.username,
+      authorProfilePictureUrl: currentUser?.profilePictureUrl,
       textContent: data.textContent
     };
     try {

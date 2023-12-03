@@ -22,6 +22,14 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
+  profilePictureUrl: {
+    type: String,
+    default: ""
+  },
+  bgPorfilePictureUrl: {
+    type: String,
+    default: ""
+  },
   verifyEmailToken: String,
   verifyEmailTokenExpiryDate: Date,
   resetPasswordToken: String,
