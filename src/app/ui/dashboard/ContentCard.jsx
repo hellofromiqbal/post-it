@@ -10,6 +10,13 @@ import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
+
+  const currentLikes = useSelector(state => state.currentLikes.value);
+  const likesCount = currentLikes.filter(like => like.contentId === data._id);
+
+  const currentComments = useSelector(state => state.currentComments.value);
+  const commentsCount = currentComments.filter(comment => comment.postId === data._id);
+  
   return (
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
@@ -34,15 +41,15 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
           <Link href="#" className='flex gap-2 items-center'>
             <FaHeart size={contentType === 'post' ? 20 : 15}/>
-            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>1.6K</span>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>{likesCount.length}</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
             <FaComment size={contentType === 'post' ? 20 : 15}/>
-            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>756</span>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>{commentsCount.length}</span>
           </Link>
           <Link href="#" className='flex gap-2 items-center'>
             <FaShare size={contentType === 'post' ? 20 : 15}/>
-            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>800</span>
+            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>0</span>
           </Link>
           {currentUser?._id === data?.authorId && contentType === 'post' &&
             <DeleteButton id={data?._id}/>
