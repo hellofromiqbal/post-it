@@ -1,4 +1,4 @@
-import { createLike } from '@/store/currentLikesSlicer';
+import { createLike, deleteLike } from '@/store/currentLikesSlicer';
 import React from 'react';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ const LikeButton = ({ id, contentType }) => {
         throw new Error("Failed to like the post.");
       } else {
         if(isLikedByCurrentUser) {
-          console.log('Disliked!');
+          dispatch(deleteLike(currentUser?._id));
         } else {
           const result = await res.json();
           dispatch(createLike(result.data));

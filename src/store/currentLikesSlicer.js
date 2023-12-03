@@ -14,12 +14,12 @@ export const currentLikesSlicer = createSlice({
     createLike: (state, action) => {
       state.value = [action.payload, ...state.value];
     },
-    // deleteComment: (state, action) => {
-    //   state.value = state.value.filter(item => item.authorId !== action.payload);
-    // }
+    deleteLike: (state, action) => {
+      state.value = state.value.filter(item => item.authorId !== action.payload);
+    }
   }
 });
 
-export const { fetchCurrentLikes, createLike } = currentLikesSlicer.actions;
+export const { fetchCurrentLikes, createLike, deleteLike } = currentLikesSlicer.actions;
 
 export default currentLikesSlicer.reducer
