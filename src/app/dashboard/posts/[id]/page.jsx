@@ -15,7 +15,7 @@ const PostPage = ({params}) => {
   return (
     <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 overflow-hidden'>
       <BackButton/>
-      <ContentCard data={postData}/>
+      <ContentCard data={postData} customPadding='px-4'/>
       <CreateCommentForm postId={postData?._id}/>
       <Comments comments={postComments}/>
     </div>

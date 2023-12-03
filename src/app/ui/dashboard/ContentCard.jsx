@@ -8,10 +8,10 @@ import { FaComment } from "react-icons/fa";
 import DeleteButton from './DeleteButton';
 import { useSelector } from 'react-redux';
 
-const ContentCard = ({ data, contentType = 'post' }) => {
+const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
   return (
-    <div className='flex flex-row gap-4 w-full p-4'>
+    <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
           <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>
