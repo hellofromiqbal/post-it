@@ -4,10 +4,10 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaShare } from "react-icons/fa6";
-import { FaComment } from "react-icons/fa";
 import DeleteButton from './DeleteButton';
 import LikeButton from './LikeButton';
 import { useSelector } from 'react-redux';
+import CommentButton from './CommentButton';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
@@ -37,11 +37,8 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           <p className='opacity-70'>{data?.textContent}</p>
         </div>
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
-          <LikeButton id={data?._id} contentType='post'/>
-          <Link href="#" className='flex gap-2 items-center'>
-            <FaComment size={contentType === 'post' ? 20 : 15}/>
-            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>{commentsCount.length}</span>
-          </Link>
+          <LikeButton id={data?._id} contentType={contentType}/>
+          <CommentButton id={data?._id} contentType={contentType}/>
           <Link href="#" className='flex gap-2 items-center'>
             <FaShare size={contentType === 'post' ? 20 : 15}/>
             <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>0</span>
