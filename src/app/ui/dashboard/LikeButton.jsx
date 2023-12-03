@@ -1,15 +1,13 @@
-import { createLike, deleteLike } from '@/store/currentLikesSlicer';
 import React from 'react';
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
+import { createLike, deleteLike } from '@/store/currentLikesSlicer';
 import { useDispatch, useSelector } from 'react-redux';
 
-const LikeButton = ({ id, contentType }) => {
-  const currentUser = useSelector(state => state.currentUser.value);
-
+const LikeButton = ({ id, contentType, currentUser }) => {
   const currentLikes = useSelector(state => state.currentLikes.value);
   const likesCount = currentLikes.filter(like => like?.contentId === id);
 
-  const isLikedByCurrentUser = likesCount.find(like => like?.authorId === currentUser._id);
+  const isLikedByCurrentUser = likesCount.find(like => like?.authorId === currentUser?._id);
 
   const dispatch = useDispatch();
 

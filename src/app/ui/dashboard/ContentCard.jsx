@@ -6,9 +6,9 @@ import Link from 'next/link';
 
 import DeleteButton from './DeleteButton';
 import LikeButton from './LikeButton';
-import { useSelector } from 'react-redux';
 import CommentButton from './CommentButton';
 import ShareButton from './ShareButton';
+import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
@@ -35,16 +35,17 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           <p className='opacity-70'>{data?.textContent}</p>
         </div>
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
-          <LikeButton id={data?._id} contentType={contentType}/>
+          <LikeButton id={data?._id} contentType={contentType} currentUser={currentUser}/>
           <CommentButton id={data?._id} contentType={contentType}/>
           <ShareButton contentType={contentType}/>
-          {currentUser?._id === data?.authorId && contentType === 'post' &&
-            <DeleteButton id={data?._id}/>
+          {currentUser?._id === data?.authorId ?
+            contentType === 'post' ?
+              <DeleteButton id={data?._id}/>
+              :
+              <DeleteButton id={data?._id} contentType='comment'/>
+            :
+            ''
           }
-          {currentUser?._id === data?.authorId && contentType === 'comment' &&
-            <DeleteButton id={data?._id} contentType='comment'/>
-          }
-
         </div>
       </div>
     </div>
