@@ -3,18 +3,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaHeart, FaShare } from "react-icons/fa6";
+
 import DeleteButton from './DeleteButton';
 import LikeButton from './LikeButton';
 import { useSelector } from 'react-redux';
 import CommentButton from './CommentButton';
+import ShareButton from './ShareButton';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
 
-  const currentComments = useSelector(state => state.currentComments.value);
-  const commentsCount = currentComments.filter(comment => comment.postId === data._id);
-  
   return (
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
@@ -39,10 +37,7 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
           <LikeButton id={data?._id} contentType={contentType}/>
           <CommentButton id={data?._id} contentType={contentType}/>
-          {/* <Link href="#" className='flex gap-2 items-center'>
-            <FaShare size={contentType === 'post' ? 20 : 15}/>
-            <span className={`${contentType === 'post' ? 'text-sm' : ''} opacity-70`}>0</span>
-          </Link> */}
+          <ShareButton contentType={contentType}/>
           {currentUser?._id === data?.authorId && contentType === 'post' &&
             <DeleteButton id={data?._id}/>
           }
