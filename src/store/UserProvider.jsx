@@ -5,6 +5,7 @@ import { fetchCurrentUserDetails } from '@/store/currentUserSlicer';
 import { useEffect } from 'react';
 import { fetchCurrentPosts } from './currentPostsSlicer';
 import { fetchCurrentComments } from './currentCommentsSlicer';
+import { fetchCurrentLikes } from './currentLikesSlicer';
 
 export const UserProvider = ({ children }) => {
   const dispatch = useDispatch();
@@ -26,6 +27,13 @@ export const UserProvider = ({ children }) => {
     fetch('/api/comments', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => dispatch(fetchCurrentComments(data.data)))
+      .catch(err => console.log(err.message));
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/likes', { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => dispatch(fetchCurrentLikes(data.data)))
       .catch(err => console.log(err.message));
   }, []);
 
