@@ -16,11 +16,10 @@ const ProfilePage = ({params}) => {
   }, []);
 
   return (
-    // <div className='flex flex-col gap-4'>
-    // </div>
     <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
       <BackButton/>
-      <div className='bg-light min-h-[180px] relative bg-[url("https://plus.unsplash.com/premium_photo-1665772800949-d16a87be214d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdvb2RzfGVufDB8fDB8fHww")] bg-center bg-cover bg-no-repeat'>
+      <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
+        <Image src={userDetails.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
         <div className='w-[150px] h-[150px] rounded-full bg-light absolute -bottom-[75px] right-4 z-10 overflow-hidden place-self-center border-4 border-softDark'>
           <Image src={userDetails.profilePictureUrl} alt='profpic' fill className='object-cover'/>
         </div>

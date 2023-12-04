@@ -26,7 +26,7 @@ const userSchema = new Schema({
     type: String,
     default: ""
   },
-  bgPorfilePictureUrl: {
+  bgProfilePictureUrl: {
     type: String,
     default: ""
   },
