@@ -2,16 +2,25 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 import { IoLocation, IoCalendar } from "react-icons/io5";
 import BackButton from '@/app/ui/dashboard/BackButton';
+import ContentCard from '@/app/ui/dashboard/ContentCard';
+import UserPosts from '@/app/ui/dashboard/UserPosts';
 
 const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     fetch(`/api/users/profile/${params.username}`, { cache: 'no-store' })
       .then(res => res.json())
       .then(data => setUserDetails(data.data))
+      .catch(err => err.message);
+
+    fetch('/api/posts/', { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => setUserPosts(data.data))
       .catch(err => err.message);
   }, []);
 
@@ -50,6 +59,11 @@ const ProfilePage = ({params}) => {
           </span>
         </div>
       </div>
+      <div className='flex justify-evenly border-y border-gray-700'>
+        <button className='w-full p-4 hover:bg-gray-700'>Posts</button>
+        <button className='w-full p-4 hover:bg-gray-700'>Likes</button>
+      </div>
+      <UserPosts userId={userDetails?._id}/>
     </div>
   )
 };

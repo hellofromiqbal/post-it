@@ -42,12 +42,12 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           </div>
           <p className='opacity-70'>{data?.textContent}</p>
         </div>
-        <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' ? 'text-base' : 'text-xs' }`}>
+        <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' || contentType === 'profile' ? 'text-base' : 'text-xs' }`}>
           <LikeButton id={data?._id} contentType={contentType} currentUser={currentUser}/>
           <CommentButton id={data?._id} contentType={contentType}/>
           <ShareButton contentType={contentType}/>
           {currentUser?._id === data?.authorId ?
-            contentType === 'post' ?
+            contentType === 'post' || contentType === 'profile' ?
               <DeleteButton id={data?._id}/>
               :
               <DeleteButton id={data?._id} contentType='comment'/>
