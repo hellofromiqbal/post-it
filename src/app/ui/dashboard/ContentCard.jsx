@@ -12,12 +12,17 @@ import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
+  const generateDate = (timestamp) => {
+    const date = new Date(timestamp).toLocaleDateString();
+    const [hours, minutes, seconds] = new Date(timestamp).toLocaleTimeString().split(":");
+    const timeUnit = seconds.split(" ")[1];
+    return `${date} - ${hours}:${minutes} ${timeUnit}`;
+  };
   return (
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
           <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>
-            {/* <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/> */}
             <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/>
           </div>
         </Link>
@@ -31,6 +36,9 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
             <Link href={`/dashboard/profile/${data?.authorUsername}`} className='text-sm opacity-70'>
               {data?.authorUsername}
             </Link>
+            <small href={`/dashboard/profile/${data?.authorUsername}`} className='text-xs opacity-50'>
+              {generateDate(data?.createdAt)}
+            </small>
           </div>
           <p className='opacity-70'>{data?.textContent}</p>
         </div>
