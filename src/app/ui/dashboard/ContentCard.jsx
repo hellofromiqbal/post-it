@@ -15,7 +15,7 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const generateDate = (timestamp) => {
     const date = new Date(timestamp).toLocaleDateString();
     const [hours, minutes, seconds] = new Date(timestamp).toLocaleTimeString().split(":");
-    const timeUnit = seconds.split(" ")[1];
+    const timeUnit = seconds?.split(" ")[1];
     return `${date} - ${hours}:${minutes} ${timeUnit}`;
   };
   return (
@@ -42,17 +42,12 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           </div>
           <p className='opacity-70'>{data?.textContent}</p>
         </div>
-        <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType === 'post' || contentType === 'profile' ? 'text-base' : 'text-xs' }`}>
+        <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType !== 'comment' ? 'text-base' : 'text-xs' }`}>
           <LikeButton id={data?._id} contentType={contentType} currentUser={currentUser}/>
           <CommentButton id={data?._id} contentType={contentType}/>
           <ShareButton contentType={contentType}/>
-          {currentUser?._id === data?.authorId ?
-            contentType === 'post' || contentType === 'profile' ?
-              <DeleteButton id={data?._id}/>
-              :
-              <DeleteButton id={data?._id} contentType='comment'/>
-            :
-            ''
+          {currentUser?._id === data?.authorId &&
+            <DeleteButton id={data?._id} contentType={contentType}/>
           }
         </div>
       </div>

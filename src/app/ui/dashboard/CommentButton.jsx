@@ -10,8 +10,8 @@ const CommentButton = ({ id, contentType }) => {
   const router = useRouter();
   return (
     <button className='flex gap-2 items-center' onClick={() => router.push(`/dashboard/posts/${id}`)}>
-      <FaComment size={contentType === 'post' || contentType === 'profile' ? 20 : 15}/>
-      <span className={`${contentType === 'post' || contentType === 'profile' ? 'text-sm' : ''} opacity-70`}>{commentsCount.length}</span>
+      <FaComment size={contentType !== 'comment' ? 20 : 15}/>
+      <span className={`${contentType !== 'comment' ? 'text-sm' : ''} opacity-70`}>{commentsCount.length}</span>
     </button>
   )
 };

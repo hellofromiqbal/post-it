@@ -10,11 +10,14 @@ const DeleteButton = ({id, contentType = 'post'}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${contentType === 'post' || contentType === 'profile' ? '/api/posts/' : '/api/comments/'}${id}`, { method: 'DELETE' });
+      const res = await fetch(`${contentType !== 'comment' ? '/api/posts/' : '/api/comments/'}${id}`, { method: 'DELETE' });
       if(!res.ok) {
         throw new Error("Failed to delete post.");
       } else {
-        if(contentType === 'post' || contentType === 'profile') {
+        if(contentType === 'post' | contentType === 'profile') {
+          dispatch(deletePost(id));
+        } else if (contentType === 'detail') {
+          router.back();
           dispatch(deletePost(id));
         } else {
           dispatch(deleteComment(id));
