@@ -68,8 +68,8 @@ const ProfilePage = ({params}) => {
         </div>
       </div>
       <div className='flex justify-evenly border-y border-gray-700'>
-        <button className={`w-full p-4 ${isPostsFocused && 'bg-gray-700'} hover:bg-gray-700`} onClick={() => setIsPostsFocused(true)}>Posts</button>
-        <button className={`w-full p-4 ${!isPostsFocused && 'bg-gray-700'} hover:bg-gray-700`} onClick={() => setIsPostsFocused(false)}>Likes</button>
+        <button className={`w-full p-4 ${isPostsFocused && 'bg-green-500 text-black'} hover:bg-green-500 hover:text-black font-medium`} onClick={() => setIsPostsFocused(true)}>Posts</button>
+        <button className={`w-full p-4 ${!isPostsFocused && 'bg-green-500 text-black'} hover:bg-green-500 hover:text-black font-medium`} onClick={() => setIsPostsFocused(false)}>Likes</button>
       </div>
       {isPostsFocused ?
         <UserPosts userId={userDetails?._id}/>
