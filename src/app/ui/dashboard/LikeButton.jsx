@@ -15,6 +15,7 @@ const LikeButton = ({ id, contentType, currentUser }) => {
     e.preventDefault();
     const newLike = {
       contentId: id,
+      contentType: contentType !== 'comment' ? 'post' : 'comment',
       authorId: currentUser?._id,
       authorUsername: currentUser?.username,
       authorFullname: currentUser?.fullname
