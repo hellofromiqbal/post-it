@@ -8,6 +8,7 @@ import UserPosts from '@/app/ui/dashboard/UserPosts';
 
 const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
+  const [isPostsFocused, setIsPostsFocused] = useState(true);
 
   useEffect(() => {
     const fetchData = async (apiUrl) => {
@@ -67,10 +68,14 @@ const ProfilePage = ({params}) => {
         </div>
       </div>
       <div className='flex justify-evenly border-y border-gray-700'>
-        <button className='w-full p-4 hover:bg-gray-700'>Posts</button>
-        <button className='w-full p-4 hover:bg-gray-700'>Likes</button>
+        <button className={`w-full p-4 ${isPostsFocused && 'bg-gray-700'} hover:bg-gray-700`} onClick={() => setIsPostsFocused(true)}>Posts</button>
+        <button className={`w-full p-4 ${!isPostsFocused && 'bg-gray-700'} hover:bg-gray-700`} onClick={() => setIsPostsFocused(false)}>Likes</button>
       </div>
-      <UserPosts userId={userDetails?._id}/>
+      {isPostsFocused ?
+        <UserPosts userId={userDetails?._id}/>
+        :
+        <h1>Coming soon!</h1>
+      }
     </div>
   )
 };
