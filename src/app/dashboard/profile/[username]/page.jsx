@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 import { IoLocation, IoCalendar } from "react-icons/io5";
 import BackButton from '@/app/ui/dashboard/BackButton';
 import UserPosts from '@/app/ui/dashboard/UserPosts';
@@ -46,10 +47,15 @@ const ProfilePage = ({params}) => {
           <h2 className='font-bold text-xl'>{userDetails.fullname}</h2>
           <p className='text-sm opacity-70'>{userDetails.username}</p>
         </div>
+        {userDetails.bio !== '' &&
+          <div>
+            <p>{userDetails.bio}</p>
+          </div>
+        }
         <div className='flex items-center gap-4'>
           <span className='flex items-center gap-1 opacity-70'>
             <IoLocation size={15}/>
-            <p className='text-sm'>Chicago, IL</p>
+            <p className='text-sm'>{userDetails.location}</p>
           </span>
           <span className='flex items-center gap-1 opacity-70'>
             <IoCalendar size={15}/>
@@ -65,6 +71,9 @@ const ProfilePage = ({params}) => {
             <p className='text-sm font-semibold'>64.3M</p>
             <p className='text-sm opacity-70'>Followers</p>
           </span>
+        </div>
+        <div className='flex items-center gap-4'>
+          <Link href={`/dashboard/profile/${userDetails?._id}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
         </div>
       </div>
       <div className='flex justify-evenly border-y border-gray-700'>

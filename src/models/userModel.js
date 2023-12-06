@@ -3,7 +3,8 @@ import mongoose, { Schema } from 'mongoose';
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   fullname: {
     type: String,
@@ -18,9 +19,17 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  isVerified: {
-    type: Boolean,
-    default: false
+  bio: {
+    type: String,
+    default: ''
+  },
+  location: {
+    type: String,
+    default: 'Somewhere'
+  },
+  website: {
+    type: String,
+    default: ''
   },
   profilePictureUrl: {
     type: String,
@@ -29,6 +38,10 @@ const userSchema = new Schema({
   bgProfilePictureUrl: {
     type: String,
     default: ""
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
   },
   verifyEmailToken: String,
   verifyEmailTokenExpiryDate: Date,
