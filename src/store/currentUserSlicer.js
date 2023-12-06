@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {};
+const initialState = {
+  value: []
+};
 
 export const currentUserSlicer = createSlice({
   name: 'currentUserDetails',
@@ -10,8 +12,8 @@ export const currentUserSlicer = createSlice({
       state.value = action.payload;
     },
     updateCurrentUserDetails: (state, action) => {
-      const currentUser = state.value.find(item => item.username === action.payload.username);
-      console.log(currentUser);
+      console.log(action.payload);
+      state.value = state.value.filter(item => item.username !== action.payload.username).unshift(action.payload);
     }
   },
 })

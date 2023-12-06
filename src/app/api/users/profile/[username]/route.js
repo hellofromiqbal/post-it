@@ -12,7 +12,6 @@ export const PUT = async (request, {params}) => {
       location: updatedLocation,
       website: updatedWebsite
     });
-    console.log(user);
     return NextResponse.json({
       success: true,
       message: 'Hello',

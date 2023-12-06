@@ -73,7 +73,7 @@ const ProfilePage = ({params}) => {
           </span>
         </div>
         <div className='flex items-center gap-4'>
-          <Link href={`/dashboard/profile/${userDetails?._id}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
+          <Link href={`/dashboard/profile/${userDetails?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
         </div>
       </div>
       <div className='flex justify-evenly border-y border-gray-700'>

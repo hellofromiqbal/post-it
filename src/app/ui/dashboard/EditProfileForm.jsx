@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import { updateCurrentUserDetails } from '@/store/currentUserSlicer';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -17,7 +18,6 @@ const EditProfileForm = () => {
       updatedLocation: data.location,
       updatedWebsite: data.website
     };
-    console.log(updatedUserDetails);
     try {
       const res = await fetch(`/api/users/profile/${currentUser?.username}`, {
         cache: 'no-store',
@@ -29,8 +29,8 @@ const EditProfileForm = () => {
         throw new Error("Failed to update user profile.")
       } else {
         const result = await res.json();
-        console.log(result);
-        // dispatch(updateCurrentUserDetails(result.data));
+        // console.log(result);
+        dispatch(updateCurrentUserDetails(result.data));
         reset();
         router.refresh();
       };
