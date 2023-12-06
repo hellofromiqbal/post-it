@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const EditProfileForm = () => {
         throw new Error("Failed to update user profile.")
       } else {
         const result = await res.json();
-        console.log(result.data);
+        dispatch(updatedCurrentUserDetails((result.data)));
         reset();
         router.back();
         router.refresh();
