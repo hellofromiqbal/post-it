@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
+import { updatePost } from '@/store/currentPostsSlicer';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const EditProfileForm = () => {
       } else {
         const result = await res.json();
         dispatch(updatedCurrentUserDetails((result.data)));
+        dispatch(updatePost(result.data));
         reset();
         router.back();
         router.refresh();
