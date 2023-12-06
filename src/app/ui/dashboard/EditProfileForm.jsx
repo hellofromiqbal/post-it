@@ -27,6 +27,8 @@ const EditProfileForm = () => {
       if(!res.ok) {
         throw new Error("Failed to update user profile.")
       } else {
+        const result = await res.json();
+        console.log(result.data);
         reset();
         router.back();
         router.refresh();

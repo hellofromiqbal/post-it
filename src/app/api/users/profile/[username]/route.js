@@ -11,7 +11,7 @@ export const PUT = async (request, {params}) => {
       bio: updatedBio,
       location: updatedLocation,
       website: updatedWebsite
-    });
+    }, { new: true });
     return NextResponse.json({
       success: true,
       message: 'Hello',
