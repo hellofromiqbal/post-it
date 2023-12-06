@@ -4,7 +4,6 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCurrentUserDetails } from '@/store/currentUserSlicer';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -12,24 +11,25 @@ const EditProfileForm = () => {
   const currentUser = useSelector(state => state.currentUser.value);
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
-    const updatedUserProfile = {
-      fullname: data.fullname,
-      bio: data.bio,
-      location: data.location,
-      website: data.website
+    const updatedUserDetails = {
+      updatedFullname: data.fullname,
+      updatedBio: data.bio,
+      updatedLocation: data.location,
+      updatedWebsite: data.website
     };
-    console.log(updatedUserProfile);
+    console.log(updatedUserDetails);
     try {
       const res = await fetch(`/api/users/profile/${currentUser?.username}`, {
         cache: 'no-store',
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(updatedUserProfile)
+        body: JSON.stringify(updatedUserDetails)
       });
       if(!res.ok) {
         throw new Error("Failed to update user profile.")
       } else {
         const result = await res.json();
+        console.log(result);
         // dispatch(updateCurrentUserDetails(result.data));
         reset();
         router.refresh();
@@ -49,7 +49,7 @@ const EditProfileForm = () => {
         <input
           id='fullname'
           defaultValue={currentUser?.fullname}
-          className='px-4 py-2 bg-transparent border border-light rounded-md'
+          className='px-4 py-2 bg-transparent border border-light rounded-md text-white'
           {...register("fullname")}
         ></input>
       </div>
@@ -60,7 +60,7 @@ const EditProfileForm = () => {
           cols="30"
           rows="3"
           defaultValue={currentUser?.bio}
-          className='px-4 py-2 bg-transparent border border-light rounded-md resize-none'
+          className='px-4 py-2 bg-transparent border border-light rounded-md resize-none text-white'
           {...register("bio")}
         ></textarea>
       </div>
@@ -69,7 +69,7 @@ const EditProfileForm = () => {
         <input
           id='location'
           defaultValue={currentUser?.location}
-          className='px-4 py-2 bg-transparent border border-light rounded-md'
+          className='px-4 py-2 bg-transparent border border-light rounded-md text-white'
           {...register("location")}
         ></input>
       </div>
@@ -78,7 +78,7 @@ const EditProfileForm = () => {
         <input
           id='website'
           defaultValue={currentUser?.website}
-          className='px-4 py-2 bg-transparent border border-light rounded-md'
+          className='px-4 py-2 bg-transparent border border-light rounded-md text-white'
           {...register("website")}
         ></input>
       </div>
