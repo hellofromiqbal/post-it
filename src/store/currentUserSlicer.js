@@ -11,14 +11,10 @@ export const currentUserSlicer = createSlice({
     fetchCurrentUserDetails: (state, action) => {
       state.value = action.payload;
     },
-    updateCurrentUserDetails: (state, action) => {
-      console.log(action.payload);
-      state.value = state.value.filter(item => item.username !== action.payload.username).unshift(action.payload);
-    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchCurrentUserDetails, updateCurrentUserDetails } = currentUserSlicer.actions;
+export const { fetchCurrentUserDetails } = currentUserSlicer.actions;
 
 export default currentUserSlicer.reducer
