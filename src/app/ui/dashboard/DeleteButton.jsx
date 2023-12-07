@@ -1,4 +1,5 @@
 import { deleteComment } from '@/store/currentCommentsSlicer';
+import { deleteLike } from '@/store/currentLikesSlicer';
 import { deletePost } from '@/store/currentPostsSlicer';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -16,9 +17,13 @@ const DeleteButton = ({id, contentType = 'post'}) => {
       } else {
         if(contentType === 'post' | contentType === 'profile') {
           dispatch(deletePost(id));
+          dispatch(deleteComment(id));
+          dispatch(deleteLike(id));
         } else if (contentType === 'detail') {
           router.back();
           dispatch(deletePost(id));
+          dispatch(deleteComment(id));
+          dispatch(deleteLike(id));
         } else {
           dispatch(deleteComment(id));
         };
