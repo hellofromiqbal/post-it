@@ -1,11 +1,24 @@
 import connectMongoDB from "@/libs/mongodb";
+import Like from "@/models/LikeModel";
+import Comment from "@/models/commentModel";
+import Post from "@/models/postModel";
 import User from "@/models/userModel";
 import { NextResponse } from 'next/server';
 
+// UPDATE USER PROFILE
 export const PUT = async (request, {params}) => {
   try {
     await connectMongoDB();
     const { updatedFullname, updatedBio, updatedLocation, updatedWebsite } = await request.json();
+    const comments = await Comment.findOneAndUpdate({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
+    const likes = await Like.findOneAndUpdate({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
+    const posts = await Post.findOneAndUpdate({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
     const user = await User.findOneAndUpdate({username: params.username}, {
       fullname: updatedFullname,
       bio: updatedBio,
@@ -15,7 +28,7 @@ export const PUT = async (request, {params}) => {
     return NextResponse.json({
       success: true,
       message: 'Hello',
-      data: user
+      data: { user, posts, likes, comments }
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
