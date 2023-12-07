@@ -10,15 +10,21 @@ export const PUT = async (request, {params}) => {
   try {
     await connectMongoDB();
     const { updatedFullname, updatedBio, updatedLocation, updatedWebsite } = await request.json();
-    const comments = await Comment.findOneAndUpdate({authorUsername: params.username}, {
+    // const comments = await Comment.findOneAndUpdate({authorUsername: params.username}, {
+    //   authorFullname: updatedFullname
+    // }, { new: true });
+    await Comment.updateMany({authorUsername: params.username}, {
       authorFullname: updatedFullname
     }, { new: true });
-    const likes = await Like.findOneAndUpdate({authorUsername: params.username}, {
+    const comments = await Comment.find({authorUsername: params.username});
+    await Like.updateMany({authorUsername: params.username}, {
       authorFullname: updatedFullname
     }, { new: true });
-    const posts = await Post.findOneAndUpdate({authorUsername: params.username}, {
+    const likes = await Like.find({authorUsername: params.username});
+    await Post.updateMany({authorUsername: params.username}, {
       authorFullname: updatedFullname
     }, { new: true });
+    const posts = await Post.find({authorUsername: params.username});
     const user = await User.findOneAndUpdate({username: params.username}, {
       fullname: updatedFullname,
       bio: updatedBio,

@@ -28,18 +28,21 @@ export const currentPostsSlicer = createSlice({
       // state.value = [updatedUser, ...filteredStateValue];
       // const filteredStateValue = state.value.filter(item => item.authorId === action.payload.authorId);
       // console.log(filteredStateValue);
-      state.value = state.value.map(item => {
-        if(item.authorId === action.payload.authorId) {
+      console.log(state.value);
+      console.log(action.payload);
+      const newState = state.value.map(item => {
+        if(item.authorId === action.payload._id) {
           return {
             ...item,
-            authorFullname: action.payload.authorFullname,
-            authorUsername: action.payload.authorUsername
+            authorFullname: action.payload.fullname,
+            authorUsername: action.payload.username
           }
         } else {
           return item;
         };
       });
-      console.log(state.value);
+      state.value = newState;
+      // console.log(state.value);
     }
   },
 })
