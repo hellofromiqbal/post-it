@@ -45,7 +45,9 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType !== 'comment' ? 'text-base' : 'text-xs' }`}>
           <LikeButton id={data?._id} contentType={contentType} currentUser={currentUser}/>
           <CommentButton id={data?._id} contentType={contentType}/>
-          <ShareButton contentType={contentType}/>
+          {contentType !== 'comment' &&
+            <ShareButton contentType={contentType}/>
+          }
           {currentUser?._id === data?.authorId &&
             <DeleteButton id={data?._id} contentType={contentType}/>
           }
