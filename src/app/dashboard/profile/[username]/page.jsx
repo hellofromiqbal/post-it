@@ -54,6 +54,11 @@ const ProfilePage = ({params}) => {
             <p>{userDetails?.bio}</p>
           </div>
         }
+        {userDetails?.website !== '' &&
+          <div>
+            <Link href={`https://${userDetails?.website}`} className='underline text-sm' target='_blank'>{userDetails?.website}</Link>
+          </div>
+        }
         <div className='flex items-center gap-4'>
           <span className='flex items-center gap-1 opacity-70'>
             <IoLocation size={15}/>
