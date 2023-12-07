@@ -9,7 +9,6 @@ const SignOutButton = () => {
   const handleSignOut = async () => {
     try {
       const res = await fetch("/api/users/sign-out", { cache: 'no-store' });
-      console.log(res);
       if(!res.ok) {
         throw new Error("Failed to sign out.");
       } else {

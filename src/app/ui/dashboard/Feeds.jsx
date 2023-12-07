@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux';
 
 const Feeds = () => {
   const posts = useSelector(state => state.currentPosts.value);
-  console.log(posts);
-
   return (
     <div className='bg-softDark rounded-md shadow-md text-light overflow-hidden'>
       {posts?.map(post => (

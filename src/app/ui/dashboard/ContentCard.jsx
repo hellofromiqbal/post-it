@@ -11,7 +11,6 @@ import ShareButton from './ShareButton';
 import { useSelector } from 'react-redux';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
-  console.log(data);
   const currentUser = useSelector(state => state.currentUser.value);
   const generateDate = (timestamp) => {
     const date = new Date(timestamp).toLocaleDateString();
