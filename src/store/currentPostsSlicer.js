@@ -23,15 +23,14 @@ export const currentPostsSlicer = createSlice({
           return {
             ...item,
             authorFullname: action.payload.fullname,
-            authorUsername: action.payload.username
-          }
+          };
         } else {
           return item;
         };
       });
       state.value = newState;
     }
-  },
+  }
 })
 
 // Action creators are generated for each case reducer function
