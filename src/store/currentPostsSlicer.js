@@ -22,6 +22,7 @@ export const currentPostsSlicer = createSlice({
         if(item.authorId === action.payload._id) {
           return {
             ...item,
+            authorUsername: action.payload.username,
             authorFullname: action.payload.fullname,
           };
         } else {

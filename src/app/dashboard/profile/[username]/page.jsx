@@ -39,25 +39,25 @@ const ProfilePage = ({params}) => {
     <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
       <BackButton/>
       <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
-        <Image src={userDetails.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
+        <Image src={userDetails?.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
         <div className='w-[150px] h-[150px] rounded-full bg-light absolute -bottom-[75px] right-4 z-10 overflow-hidden place-self-center border-4 border-softDark'>
-          <Image src={userDetails.profilePictureUrl} alt='profpic' fill className='object-cover'/>
+          <Image src={userDetails?.profilePictureUrl} alt='profpic' fill className='object-cover'/>
         </div>
       </div>
       <div className='flex flex-col gap-2 p-4'>
         <div>
-          <h2 className='font-bold text-xl'>{userDetails.fullname}</h2>
-          <p className='text-sm opacity-70'>{userDetails.username}</p>
+          <h2 className='font-bold text-xl'>{userDetails?.fullname}</h2>
+          <p className='text-sm opacity-70'>{userDetails?.username}</p>
         </div>
-        {userDetails.bio !== '' &&
+        {userDetails?.bio !== '' &&
           <div>
-            <p>{userDetails.bio}</p>
+            <p>{userDetails?.bio}</p>
           </div>
         }
         <div className='flex items-center gap-4'>
           <span className='flex items-center gap-1 opacity-70'>
             <IoLocation size={15}/>
-            <p className='text-sm'>{userDetails.location}</p>
+            <p className='text-sm'>{userDetails?.location}</p>
           </span>
           <span className='flex items-center gap-1 opacity-70'>
             <IoCalendar size={15}/>

@@ -12,6 +12,8 @@ export const currentUserSlicer = createSlice({
       state.value = action.payload;
     },
     updatedCurrentUserDetails: (state, action) => {
+      console.log(state.value);
+      console.log(action.payload);
       state.value = action.payload;
     }
   },

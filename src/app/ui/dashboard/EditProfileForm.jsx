@@ -16,6 +16,7 @@ const EditProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
     const updatedUserDetails = {
+      updatedUsername: data.username,
       updatedFullname: data.fullname,
       updatedBio: data.bio,
       updatedLocation: data.location,
@@ -37,7 +38,7 @@ const EditProfileForm = () => {
         dispatch(updateLike(result.data.user));
         dispatch(updateComment(result.data.user));
         reset();
-        router.back();
+        router.push(`/dashboard/profile/${result.data.user.username}`);
         router.refresh();
       };
     } catch (error) {
@@ -50,6 +51,15 @@ const EditProfileForm = () => {
       className='flex flex-col gap-4 px-4 pb-4'
       onSubmit={handleSubmit(submittedData)}
     >
+      <div className='flex flex-col gap-1'>
+        <label htmlFor="username" className='font-medium'>Username</label>
+        <input
+          id='username'
+          defaultValue={currentUser?.username.substring(1)}
+          className='px-4 py-2 bg-transparent border border-light rounded-md text-white'
+          {...register("username")}
+        ></input>
+      </div>
       <div className='flex flex-col gap-1'>
         <label htmlFor="fullname" className='font-medium'>Fullname</label>
         <input
