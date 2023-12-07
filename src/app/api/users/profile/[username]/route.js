@@ -9,25 +9,35 @@ import { NextResponse } from 'next/server';
 export const PUT = async (request, {params}) => {
   try {
     await connectMongoDB();
+
     const { updatedFullname, updatedBio, updatedLocation, updatedWebsite } = await request.json();
-    await Comment.updateMany({authorUsername: params.username}, {
-      authorFullname: updatedFullname
-    }, { new: true });
-    const comments = await Comment.find({authorUsername: params.username});
-    await Like.updateMany({authorUsername: params.username}, {
-      authorFullname: updatedFullname
-    }, { new: true });
-    const likes = await Like.find({authorUsername: params.username});
-    await Post.updateMany({authorUsername: params.username}, {
-      authorFullname: updatedFullname
-    }, { new: true });
-    const posts = await Post.find({authorUsername: params.username});
+
+    // Update user with matches username
     const user = await User.findOneAndUpdate({username: params.username}, {
       fullname: updatedFullname,
       bio: updatedBio,
       location: updatedLocation,
       website: updatedWebsite
     }, { new: true });
+
+    // Update comments with matches username
+    await Comment.updateMany({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
+    const comments = await Comment.find({authorUsername: params.username});
+
+    // Update likes with matches username
+    await Like.updateMany({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
+    const likes = await Like.find({authorUsername: params.username});
+
+    // Update posts with matches username
+    await Post.updateMany({authorUsername: params.username}, {
+      authorFullname: updatedFullname
+    }, { new: true });
+    const posts = await Post.find({authorUsername: params.username});
+
     return NextResponse.json({
       success: true,
       message: 'Hello',
