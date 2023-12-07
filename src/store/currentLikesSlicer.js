@@ -33,6 +33,6 @@ export const currentLikesSlicer = createSlice({
   }
 });
 
-export const { fetchCurrentLikes, createLike, deleteLike } = currentLikesSlicer.actions;
+export const { fetchCurrentLikes, createLike, deleteLike, updateLike } = currentLikesSlicer.actions;
 
 export default currentLikesSlicer.reducer

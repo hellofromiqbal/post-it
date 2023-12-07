@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 import { updatePost } from '@/store/currentPostsSlicer';
+import { updateLike } from '@/store/currentLikesSlicer';
+import { updateComment } from '@/store/currentCommentsSlicer';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -32,6 +34,8 @@ const EditProfileForm = () => {
         const result = await res.json();
         dispatch(updatedCurrentUserDetails((result.data.user)));
         dispatch(updatePost(result.data.user));
+        dispatch(updateLike(result.data.user));
+        dispatch(updateComment(result.data.user));
         reset();
         router.back();
         router.refresh();
