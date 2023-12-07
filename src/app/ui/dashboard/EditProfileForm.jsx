@@ -30,7 +30,6 @@ const EditProfileForm = () => {
         throw new Error("Failed to update user profile.")
       } else {
         const result = await res.json();
-        console.log(result.data);
         dispatch(updatedCurrentUserDetails((result.data.user)));
         dispatch(updatePost(result.data.user));
         reset();

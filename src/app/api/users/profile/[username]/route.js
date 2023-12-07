@@ -10,9 +10,6 @@ export const PUT = async (request, {params}) => {
   try {
     await connectMongoDB();
     const { updatedFullname, updatedBio, updatedLocation, updatedWebsite } = await request.json();
-    // const comments = await Comment.findOneAndUpdate({authorUsername: params.username}, {
-    //   authorFullname: updatedFullname
-    // }, { new: true });
     await Comment.updateMany({authorUsername: params.username}, {
       authorFullname: updatedFullname
     }, { new: true });
