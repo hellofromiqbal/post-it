@@ -15,10 +15,10 @@ const CreateCommentForm = ({ postId }) => {
   const currentUser = useSelector(state => state.currentUser.value);
   const currentComments = useSelector(state => state.currentComments.value);
   const currentPostComments = currentComments.filter(comment => comment.postId === postId);
-  const createCommentSchema = z.object({
+  const createCommentFormSchema = z.object({
     textContent: z.string().min(1, {message: "Text content should not be blank."}).max(2000, {message: "Text content should fewer than 2000 characters."})
   });
-  const { register, handleSubmit, reset } = useForm({resolver: zodResolver(createCommentSchema)});
+  const { register, handleSubmit, reset } = useForm({resolver: zodResolver(createCommentFormSchema)});
   const submittedData = async (data) => {
     const newComment = {
       postId: postId,
