@@ -8,21 +8,14 @@ import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 import { updatePost } from '@/store/currentPostsSlicer';
 import { updateLike } from '@/store/currentLikesSlicer';
 import { updateComment } from '@/store/currentCommentsSlicer';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { notifySuccess } from '@/helpers/toaster';
+import { editProfileFormSchema } from '@/helpers/zodSchema';
 
 const EditProfileForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser.value);
-  const editProfileFormSchema = z.object({
-    username: z.string().min(10, {message: "Username at least 10 characters long."}).max(20, {message: "Username must be fewer than 20 characters."}),
-    fullname: z.string().min(1, {message: "Fullname at least 1 characters long."}).max(20, {message: "Fullname must be fewer than 20 characters."}),
-    bio: z.string().max(50, {message: "Bio must be fewer than 50 characters."}),
-    location: z.string(),
-    website: z.string()
-  });
   const { register, handleSubmit, reset } = useForm({resolver: zodResolver(editProfileFormSchema)});
   const submittedData = async (data) => {
     const updatedUserDetails = {
