@@ -10,7 +10,7 @@ export const POST = async (request) => {
     const newComment = await Comment.create(reqData);
     return NextResponse.json({
       success: true,
-      message: 'Comment sent.',
+      message: 'Comment has been sent.',
       data: newComment._doc
     }, { status: 200 });
   } catch (error) {
