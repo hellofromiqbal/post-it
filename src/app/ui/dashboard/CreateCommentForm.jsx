@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 
 const CreateCommentForm = ({ postId }) => {
@@ -13,7 +15,10 @@ const CreateCommentForm = ({ postId }) => {
   const currentUser = useSelector(state => state.currentUser.value);
   const currentComments = useSelector(state => state.currentComments.value);
   const currentPostComments = currentComments.filter(comment => comment.postId === postId);
-  const { register, handleSubmit, reset } = useForm();
+  const createCommentSchema = z.object({
+    textContent: z.string().min(1, {message: "Text content should not be blank."}).max(2000, {message: "Text content should fewer than 2000 characters."})
+  });
+  const { register, handleSubmit, reset } = useForm({resolver: zodResolver(createCommentSchema)});
   const submittedData = async (data) => {
     const newComment = {
       postId: postId,
@@ -49,7 +54,7 @@ const CreateCommentForm = ({ postId }) => {
       onSubmit={handleSubmit(submittedData)}
     >
       <textarea
-        placeholder='Post your reply'
+        placeholder='Post your comment'
         className='px-4 py-2 bg-transparent border border-light rounded-md resize-none'
         {...register("textContent")}
       ></textarea>
