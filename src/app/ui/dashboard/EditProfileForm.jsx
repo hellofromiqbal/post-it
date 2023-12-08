@@ -38,7 +38,7 @@ const EditProfileForm = () => {
         dispatch(updateLike(result.data.user));
         dispatch(updateComment(result.data.user));
         reset();
-        router.push(`/dashboard/profile/${result.data.user.username}`);
+        router.push(`/dashboard`);
         router.refresh();
       };
     } catch (error) {
@@ -98,7 +98,7 @@ const EditProfileForm = () => {
           {...register("website")}
         ></input>
       </div>
-      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Post</button>
+      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Save Changes</button>
     </form>
   )
 };

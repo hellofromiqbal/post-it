@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-
 import {
   IoHome,
   IoSearch,
@@ -18,7 +17,6 @@ import { usePathname } from 'next/navigation';
 const Navbar = () => {
   const pathname = usePathname();
   const currentUser = useSelector(state => state.currentUser.value);
-  console.log(currentUser);
   return (
     <nav className='flex flex-col bg-softDark shadow-md rounded-md overflow-hidden'>
       <Link href="/dashboard/" className={`${pathname === "/dashboard" ? 'bg-green-500 text-black' : 'text-light'} hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4`}>
