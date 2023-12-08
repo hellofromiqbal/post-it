@@ -10,13 +10,13 @@ export const POST = async (request) => {
     const newPost = await Post.create(reqData);
     return NextResponse.json({
       success: true,
-      message: 'Post has been posted.',
+      message: 'Posted successfully.',
       data: newPost._doc
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: 'Error posting the post.',
+      message: 'Error posting.',
       error: error.message
     });
   };

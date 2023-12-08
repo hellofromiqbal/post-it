@@ -7,10 +7,19 @@ import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-hot-toast';
 
 const CreatePostForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const notify = (message) => toast(`${message}`, {
+    icon: '👏',
+    style: {
+      borderRadius: '10px',
+      background: '#1b1f23',
+      color: '#fff'
+    }
+  });
   const currentUser = useSelector(state => state.currentUser.value);
   const createPostFormSchema = z.object({
     textContent: z.string().min(1, {message: "Text content should not be blank."}).max(4000, {message: "Text content must be fewer than 4000 characters."})
@@ -38,6 +47,7 @@ const CreatePostForm = () => {
         dispatch(createPost(result.data));
         reset();
         router.refresh();
+        notify(result.message);
       };
     } catch (error) {
       console.log(error.message);
