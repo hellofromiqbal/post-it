@@ -9,15 +9,10 @@ import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
 import ShareButton from './ShareButton';
 import { useSelector } from 'react-redux';
+import { generateDate } from '@/helpers/dateGenerator';
 
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
-  const generateDate = (timestamp) => {
-    const date = new Date(timestamp).toLocaleDateString();
-    const [hours, minutes, seconds] = new Date(timestamp).toLocaleTimeString().split(":");
-    const timeUnit = seconds?.split(" ")[1];
-    return `${date} - ${hours}:${minutes} ${timeUnit}`;
-  };
   return (
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
@@ -48,9 +43,6 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           {contentType !== 'comment' &&
             <ShareButton contentType={contentType}/>
           }
-          {/* {currentUser?._id === data?.authorId &&
-            <DeleteButton id={data?._id} contentType={contentType}/>
-          } */}
           {currentUser?._id === data?.authorId ?
             <DeleteButton id={data?._id} contentType={contentType}/>
             :
