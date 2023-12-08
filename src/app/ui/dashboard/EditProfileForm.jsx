@@ -25,7 +25,7 @@ const EditProfileForm = () => {
   const editProfileFormSchema = z.object({
     username: z.string().min(10, {message: "Username at least 10 characters long."}).max(20, {message: "Username must be fewer than 20 characters."}),
     fullname: z.string().min(1, {message: "Fullname at least 1 characters long."}).max(20, {message: "Fullname must be fewer than 20 characters."}),
-    bio: z.string(),
+    bio: z.string().max(50, {message: "Bio must be fewer than 50 characters."}),
     location: z.string(),
     website: z.string()
   });
