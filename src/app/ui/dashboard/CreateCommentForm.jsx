@@ -11,6 +11,8 @@ const CreateCommentForm = ({ postId }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser.value);
+  const currentComments = useSelector(state => state.currentComments.value);
+  const currentPostComments = currentComments.filter(comment => comment.postId === postId);
   const { register, handleSubmit, reset } = useForm();
   const submittedData = async (data) => {
     const newComment = {
@@ -43,7 +45,7 @@ const CreateCommentForm = ({ postId }) => {
 
   return (
     <form
-      className='flex flex-col gap-4 p-4'
+      className={`flex flex-col gap-4 p-4 ${currentPostComments.length > 0 && 'border-b border-b-gray-700'}`}
       onSubmit={handleSubmit(submittedData)}
     >
       <textarea
@@ -51,7 +53,7 @@ const CreateCommentForm = ({ postId }) => {
         className='px-4 py-2 bg-transparent border border-light rounded-md resize-none'
         {...register("textContent")}
       ></textarea>
-      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Reply</button>
+      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Comment</button>
     </form>
   )
 };
