@@ -10,19 +10,11 @@ import { updateLike } from '@/store/currentLikesSlicer';
 import { updateComment } from '@/store/currentCommentsSlicer';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-hot-toast';
+import { notifySuccess } from '@/helpers/toaster';
 
 const EditProfileForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const notify = (message) => toast(`${message}`, {
-    icon: '👏',
-    style: {
-      borderRadius: '10px',
-      background: '#1b1f23',
-      color: '#fff'
-    }
-  });
   const currentUser = useSelector(state => state.currentUser.value);
   const editProfileFormSchema = z.object({
     username: z.string().min(10, {message: "Username at least 10 characters long."}).max(20, {message: "Username must be fewer than 20 characters."}),
@@ -55,7 +47,7 @@ const EditProfileForm = () => {
         dispatch(updatePost(result.data.user));
         dispatch(updateLike(result.data.user));
         dispatch(updateComment(result.data.user));
-        notify(result.message);
+        notifySuccess(result.message);
         reset();
         router.push(`/dashboard`);
         router.refresh();
