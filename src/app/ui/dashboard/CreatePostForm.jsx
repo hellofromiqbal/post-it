@@ -5,12 +5,17 @@ import { createPost } from '@/store/currentPostsSlicer';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const CreatePostForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser.value);
-  const { register, handleSubmit, reset } = useForm();
+  const createPostFormSchema = z.object({
+    textContent: z.string().min(1, {message: "Text content should not be blank."}).max(4000, {message: "Text content must be fewer than 4000 characters."})
+  });
+  const { register, handleSubmit, reset } = useForm({resolver: zodResolver(createPostFormSchema)});
   const submittedData = async (data) => {
     const newPost = {
       authorId: currentUser?._id,
