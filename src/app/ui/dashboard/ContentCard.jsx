@@ -48,8 +48,16 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
           {contentType !== 'comment' &&
             <ShareButton contentType={contentType}/>
           }
-          {currentUser?._id === data?.authorId &&
+          {/* {currentUser?._id === data?.authorId &&
             <DeleteButton id={data?._id} contentType={contentType}/>
+          } */}
+          {currentUser?._id === data?.authorId ?
+            <DeleteButton id={data?._id} contentType={contentType}/>
+            :
+            contentType === 'comment' ?
+              <DeleteButton id={data?._id} contentType={contentType}/>
+              :
+              ''
           }
         </div>
       </div>
