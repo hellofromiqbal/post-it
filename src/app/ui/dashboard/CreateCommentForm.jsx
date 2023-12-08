@@ -7,11 +7,20 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-hot-toast';
 
 
 const CreateCommentForm = ({ postId }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const notify = (message) => toast(`${message}`, {
+    icon: '👏',
+    style: {
+      borderRadius: '10px',
+      background: '#1b1f23',
+      color: '#fff'
+    }
+  });
   const currentUser = useSelector(state => state.currentUser.value);
   const currentComments = useSelector(state => state.currentComments.value);
   const currentPostComments = currentComments.filter(comment => comment.postId === postId);
@@ -36,10 +45,11 @@ const CreateCommentForm = ({ postId }) => {
         body: JSON.stringify(newComment)
       });
       if(!res.ok) {
-        throw new Error("Failed to post.")
+        throw new Error("Failed to comment.")
       } else {
         const result = await res.json();
         dispatch(createComment(result.data));
+        notify(result.message);
         reset();
         router.refresh();
       };
