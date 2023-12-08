@@ -18,7 +18,7 @@ const ProfilePage = ({params}) => {
     const fetchData = async (apiUrl) => {
       const res = await fetch(apiUrl, { cache: 'no-store' });
       if(!res.ok) {
-        // throw new Error("Failed to fetch data");
+        throw new Error("Failed to fetch data");
         NotFoundPage();
       } else {
         return res.json();
