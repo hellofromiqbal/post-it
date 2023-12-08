@@ -71,7 +71,7 @@ const EditProfileForm = () => {
         <label htmlFor="username" className='font-medium'>Username</label>
         <input
           id='username'
-          defaultValue={currentUser?.username.substring(1)}
+          defaultValue={currentUser?.username?.substring(1)}
           className='px-4 py-2 bg-transparent border border-light rounded-md text-white'
           {...register("username")}
         ></input>
