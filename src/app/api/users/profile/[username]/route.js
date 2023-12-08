@@ -46,7 +46,7 @@ export const PUT = async (request, {params}) => {
 
     return NextResponse.json({
       success: true,
-      message: 'Hello',
+      message: 'Profile has been updated.',
       data: { user, posts, likes, comments }
     }, { status: 200 });
   } catch (error) {

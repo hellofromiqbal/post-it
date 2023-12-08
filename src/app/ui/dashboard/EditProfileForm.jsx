@@ -10,18 +10,20 @@ import { updateLike } from '@/store/currentLikesSlicer';
 import { updateComment } from '@/store/currentCommentsSlicer';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-hot-toast';
 
 const EditProfileForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const notify = (message) => toast(`${message}`, {
+    icon: '👏',
+    style: {
+      borderRadius: '10px',
+      background: '#1b1f23',
+      color: '#fff'
+    }
+  });
   const currentUser = useSelector(state => state.currentUser.value);
-  // const editProfileFormSchema = z.object({
-  //   username: z.string().min(10, {message: "Username at least 10 characters long."}).max(20, {message: "Username must be fewer than 20 characters."}),
-  //   fullname: z.string().min(1, {message: "Fullname at least 1 characters long."}).max(20, {message: "Fullname must be fewer than 20 characters."}),
-  //   bio: z.string(),
-  //   location: z.string(),
-  //   website: z.string
-  // });
   const editProfileFormSchema = z.object({
     username: z.string().min(10, {message: "Username at least 10 characters long."}).max(20, {message: "Username must be fewer than 20 characters."}),
     fullname: z.string().min(1, {message: "Fullname at least 1 characters long."}).max(20, {message: "Fullname must be fewer than 20 characters."}),
@@ -46,13 +48,14 @@ const EditProfileForm = () => {
         body: JSON.stringify(updatedUserDetails)
       });
       if(!res.ok) {
-        throw new Error("Failed to update user profile.")
+        throw new Error("Failed to update profile.")
       } else {
         const result = await res.json();
         dispatch(updatedCurrentUserDetails(result.data.user));
         dispatch(updatePost(result.data.user));
         dispatch(updateLike(result.data.user));
         dispatch(updateComment(result.data.user));
+        notify(result.message);
         reset();
         router.push(`/dashboard`);
         router.refresh();
