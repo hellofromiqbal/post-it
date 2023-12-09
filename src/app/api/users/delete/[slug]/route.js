@@ -11,7 +11,9 @@ export const DELETE = async (request, {params}) => {
     await User.findByIdAndDelete(params.slug);
     await Post.deleteMany({authorId: params.slug});
     await Comment.deleteMany({authorId: params.slug});
+    await Comment.deleteMany({postAuthorId: params.slug});
     await Like.deleteMany({authorId: params.slug});
+    await Like.deleteMany({contentAuthorId: params.slug});
     return NextResponse.json({
       success: true,
       message: 'Account has been deleted.'
