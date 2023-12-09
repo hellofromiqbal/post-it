@@ -3,9 +3,9 @@ import { FaHeart } from "react-icons/fa6";
 import { createLike, deleteLike } from '@/store/currentLikesSlicer';
 import { useDispatch, useSelector } from 'react-redux';
 
-const LikeButton = ({ id, contentType, currentUser }) => {
+const LikeButton = ({ data, contentType, currentUser }) => {
   const currentLikes = useSelector(state => state.currentLikes.value);
-  const likesCount = currentLikes.filter(like => like?.contentId === id);
+  const likesCount = currentLikes.filter(like => like?.contentId === data?._id);
 
   const isLikedByCurrentUser = likesCount.find(like => like?.authorId === currentUser?._id);
 
@@ -14,7 +14,8 @@ const LikeButton = ({ id, contentType, currentUser }) => {
   const handleLike = async (e) =>{
     e.preventDefault();
     const newLike = {
-      contentId: id,
+      contentId: data?._id,
+      contentAuthorId: data?.authorId,
       contentType: contentType !== 'comment' ? 'post' : 'comment',
       authorId: currentUser?._id,
       authorUsername: currentUser?.username,

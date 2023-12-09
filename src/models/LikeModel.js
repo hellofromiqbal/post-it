@@ -5,6 +5,10 @@ const likeSchema = new Schema({
     type: String,
     required: true
   },
+  contentAuthorId: {
+    type: String,
+    required: true
+  },
   contentType: {
     type: String,
     required: true
