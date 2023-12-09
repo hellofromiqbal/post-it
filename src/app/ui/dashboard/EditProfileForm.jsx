@@ -11,6 +11,7 @@ import { updateComment } from '@/store/currentCommentsSlicer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { notifySuccess } from '@/helpers/toaster';
 import { editProfileFormSchema } from '@/helpers/zodSchema';
+import DeleteAccountButton from './DeleteAccountButton';
 
 const EditProfileForm = () => {
   const router = useRouter();
@@ -102,7 +103,10 @@ const EditProfileForm = () => {
           {...register("website")}
         ></input>
       </div>
-      <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Save Changes</button>
+      <div className='flex flex-col gap-1'>
+        <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Save Changes</button>
+        <DeleteAccountButton id={currentUser?._id}/>
+      </div>
     </form>
   )
 };
