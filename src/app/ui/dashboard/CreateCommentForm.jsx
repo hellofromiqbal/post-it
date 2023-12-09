@@ -10,16 +10,17 @@ import { notifySuccess } from '@/helpers/toaster';
 import { createCommentFormSchema } from '@/helpers/zodSchema';
 
 
-const CreateCommentForm = ({ postId }) => {
+const CreateCommentForm = ({ data: postData }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser.value);
   const currentComments = useSelector(state => state.currentComments.value);
-  const currentPostComments = currentComments.filter(comment => comment.postId === postId);
+  const currentPostComments = currentComments.filter(comment => comment.postId === postData?._id);
   const { register, handleSubmit, reset } = useForm({resolver: zodResolver(createCommentFormSchema)});
   const submittedData = async (data) => {
     const newComment = {
-      postId: postId,
+      postId: postData?._id,
+      postAuthorId: postData?.authorId,
       authorId: currentUser?._id,
       authorUsername: currentUser?.username,
       authorFullname: currentUser?.fullname,
