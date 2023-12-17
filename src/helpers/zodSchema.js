@@ -15,6 +15,10 @@ export const signUpFormSchema = z.object({
   path: ["confirmPassword"]
 });
 
+export const forgotPasswordSchema = z.object({
+  email: z.string().email({message: "Email is required and must be in a correct format."}),
+});
+
 export const createPostFormSchema = z.object({
   textContent: z.string().min(1, {message: "Text content should not be blank."}).max(4000, {message: "Text content must be fewer than 4000 characters."})
 });

@@ -14,6 +14,7 @@ export default function Home() {
         <div className='flex flex-col px-8 md:px-0 gap-4 w-full md:w-2/3 mx-auto'>
           <SignInForm/>
           <p className='text-white text-sm text-center opacity-70'>Do not have an account? <Link href="/sign-up" className='text-white hover:text-green-400 underline'>Sign Up</Link> now.</p>
+          <Link href="/forgot-password" className='text-white text-sm text-center opacity-70 hover:text-green-400 underline'>Forgot password?</Link>
         </div>
       </div>
     </main>
