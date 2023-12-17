@@ -2,11 +2,15 @@
 
 import { notifySuccess } from "@/helpers/toaster";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const VerifyEmailButton = ({id}) => {
+  const [sending, setIsSending] = useState(false);
   const router = useRouter();
   const handleVerify = async (e) => {
     e.preventDefault();
+    setIsSending(true);
+    notifySuccess("Sending email. Please check your email regularly");
     try {
       const res = await fetch(`/api/sendMail/verifyEmail`, {
         cache: 'no-store',
@@ -18,18 +22,20 @@ const VerifyEmailButton = ({id}) => {
         throw new Error("Failed to send email.");
       } else {
         const result = await res.json();
-        notifySuccess(result.message);
+        setIsSending(false);
+        router.refresh();
       };
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 
   return (
     <button
-      className='px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full transition duration-150'
+      className={`px-4 py-2 ${sending === false ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-300 hover:bg-blue-300' } text-white font-semibold rounded-full transition duration-150`}
       onClick={(e) => handleVerify(e)}
-    >Verify Email</button>
+      disabled={sending}
+    >{sending ? 'Sending...' : 'Verify Email' }</button>
   )
 };
 
