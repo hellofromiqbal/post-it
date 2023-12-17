@@ -7,7 +7,6 @@ export const POST = async (request) => {
     await connectMongoDB();
     const reqBody = await request.json();
     const { token } = reqBody;
-    console.log(token);
 
     const isUserExist = await User.findOne({
       verifyEmailToken: token,
@@ -20,13 +19,10 @@ export const POST = async (request) => {
       }, { status: 400 });
     };
 
-    console.log(isUserExist);
-
-    isUserExist.isVerify = true;
+    isUserExist.isVerified = true;
     isUserExist.verifyEmailToken = undefined;
     isUserExist.verifyEmailTokenExpiryDate = undefined;
     const updatedUser = await isUserExist.save();
-    console.log(updatedUser);
 
     return NextResponse.json({
       success: true,

@@ -23,7 +23,8 @@ const VerifyEmailButton = ({id}) => {
       } else {
         const result = await res.json();
         setIsSending(false);
-        router.refresh();
+        await fetch("/api/users/sign-out", { cache: 'no-store' });
+        router.push('/');
       };
     } catch (error) {
       console.log(error.message);
