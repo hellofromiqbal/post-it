@@ -10,7 +10,7 @@ const VerifyEmailButton = ({user}) => {
   const handleVerify = async (e) => {
     e.preventDefault();
     setIsSending(true);
-    notifySuccess("Sending email. Please check your email regularly");
+    notifySuccess("Sending email. Please check your email regularly.");
     try {
       const res = await fetch(`/api/sendMail/verifyEmail`, {
         cache: 'no-store',

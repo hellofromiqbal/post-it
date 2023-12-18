@@ -5,26 +5,29 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { forgotPasswordSchema } from '@/helpers/zodSchema';
+import { notifySuccess } from '@/helpers/toaster';
 
 const ForgotPasswordForm = () => {
   const router = useRouter();
-  const { register, handleSubmit, formState: {errors} } = useForm({ resolver: zodResolver(forgotPasswordSchema)});
+  const { register, handleSubmit, reset, formState: {errors} } = useForm({ resolver: zodResolver(forgotPasswordSchema)});
   const submittedData = async (data) => {
     console.log(data);
-    // try {
-    //   const res = await fetch("/api/users/sign-up", {
-    //     method: 'POST',
-    //     headers: { 'Content-type': 'application/json' },
-    //     body: JSON.stringify(data)
-    //   });
-    //   if(!res.ok) {
-    //     throw new Error("Failed to create new user.");
-    //   } else {
-    //     router.push("/");
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-    // };
+    notifySuccess("Sending email. Please check your email regularly.");
+    try {
+      const res = await fetch("/api/sendMail/resetPassword", {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if(!res.ok) {
+        throw new Error("Failed to send forgot password email.");
+      } else {
+        reset();
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    };
   };
 
   return (
