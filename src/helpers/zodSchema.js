@@ -19,6 +19,16 @@ export const forgotPasswordSchema = z.object({
   email: z.string().email({message: "Email is required and must be in a correct format."}),
 });
 
+export const resetPasswordSchema = z.object({
+  newPassword: z.string({
+    required_error: "New password is required"
+  }).min(6, {message: "New password at least 6 or more characters long."}).max(20, {message: "New password at least 20 or fewer characters long."}),
+  confirmNewPassword: z.string().min(6, {message: "Confirm new password at least 6 or more characters long."}).max(20, {message: "Confirm new password at least 20 or fewer characters long."}),
+}).refine((data) => data.newPassword === data.confirmNewPassword, {
+  message: "Password do not match",
+  path: ["confirmPassword"]
+});
+
 export const createPostFormSchema = z.object({
   textContent: z.string().min(1, {message: "Text content should not be blank."}).max(4000, {message: "Text content must be fewer than 4000 characters."})
 });
