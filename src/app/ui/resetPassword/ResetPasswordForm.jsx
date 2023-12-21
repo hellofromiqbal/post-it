@@ -11,7 +11,6 @@ const ResetPasswordForm = ({ token }) => {
   const router = useRouter();
   const { register, handleSubmit, reset, formState: {errors} } = useForm({ resolver: zodResolver(resetPasswordSchema)});
   const submittedData = async (data) => {
-    console.log(data);
     notifySuccess("Sending email. Please check your email regularly.");
     try {
       const res = await fetch(`/api/users/reset-password/${token}`, {
