@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -106,6 +107,7 @@ const EditProfileForm = () => {
       </div>
       <div className='flex flex-col gap-4'>
         <button className='px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-full transition duration-150'>Save Changes</button>
+        <Link href={`/dashboard/profile/${currentUser?.username}/edit/change-password`} className='px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-center text-black font-semibold rounded-full transition duration-150'>Change Password</Link>
         <VerifyEmailButton user={currentUser}/>
         <DeleteAccountButton id={currentUser?._id}/>
       </div>
