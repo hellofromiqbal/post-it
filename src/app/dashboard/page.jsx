@@ -7,7 +7,9 @@ import Feeds from '../ui/dashboard/Feeds';
 const FeedPage = () => {
   return (
     <div className='flex flex-col gap-4'>
-      <CreatePostForm/>
+      <div className='hidden md:block'>
+        <CreatePostForm/>
+      </div>
       <Feeds/>
     </div>
   )

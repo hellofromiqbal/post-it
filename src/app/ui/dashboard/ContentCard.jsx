@@ -17,25 +17,27 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
     <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
-          <div className='w-[50px] h-[50px] rounded-full bg-light relative overflow-hidden'>
+          <div className='w-[40px] md:w-[50px] h-[40px] md:h-[50px] rounded-full bg-light relative overflow-hidden'>
             <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/>
           </div>
         </Link>
       </div>
       <div className='flex flex-col gap-2 w-full'>
-        <div className='flex flex-col'>
-          <div className='flex gap-2 items-center'>
-            <Link href={`/dashboard/profile/${data?.authorUsername}`} className='font-semibold'>
-              {data?.authorFullname}
-            </Link>
-            <Link href={`/dashboard/profile/${data?.authorUsername}`} className='text-sm opacity-70'>
-              {data?.authorUsername}
-            </Link>
-            <small href={`/dashboard/profile/${data?.authorUsername}`} className='text-xs opacity-50'>
+        <div className='flex flex-col gap-1 md:gap-0'>
+          <div className='flex justify-between md:justify-normal md:items-center gap-0 md:gap-2'>
+            <div className='flex flex-col md:flex-row md:items-center gap-0 md:gap-2'>
+              <Link href={`/dashboard/profile/${data?.authorUsername}`} className='text-base font-semibold'>
+                {data?.authorFullname}
+              </Link>
+              <Link href={`/dashboard/profile/${data?.authorUsername}`} className='-mt-1 md:mt-0 text-xs md:text-sm opacity-70'>
+                {data?.authorUsername}
+              </Link>
+            </div>
+            <small href={`/dashboard/profile/${data?.authorUsername}`} className='mt-1 md:mt-0 text-xs opacity-50'>
               {generateDate(data?.createdAt)}
             </small>
           </div>
-          <p className='opacity-70'>{data?.textContent}</p>
+          <p className='text-base opacity-70'>{data?.textContent}</p>
         </div>
         <div className={`flex justify-end items-center gap-10 text-light text-xs ${contentType !== 'comment' ? 'text-base' : 'text-xs' }`}>
           <LikeButton data={data} contentType={contentType} currentUser={currentUser}/>
