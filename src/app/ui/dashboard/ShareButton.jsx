@@ -10,7 +10,7 @@ const ShareButton = ({ contentType }) => {
   };
   return (
     <button className='flex gap-2 items-center' onClick={(e) => handleShare(e)}>
-      <FaShare size={contentType !== 'comment' ? 20 : 15}/>
+      <FaShare size={contentType !== 'comment' ? 20 : 15} className='w-4 md:w-auto'/>
       <span className={`${contentType !== 'comment' ? 'text-sm' : ''} opacity-70`}>0</span>
     </button>
   )

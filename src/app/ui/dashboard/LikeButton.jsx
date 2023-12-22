@@ -51,9 +51,9 @@ const LikeButton = ({ data, contentType, currentUser }) => {
   return (
     <button className='flex gap-2 items-center' onClick={(e) => handleLike(e)}>
       {isLikedByCurrentUser ?
-        <FaHeart size={contentType !== 'comment' ? 20 : 15} className='text-green-500'/>
+        <FaHeart size={contentType !== 'comment' ? 20 : 15} className='w-4 md:w-auto text-green-500'/>
         :
-        <FaHeart size={contentType !== 'comment' ? 20 : 15}/>
+        <FaHeart size={contentType !== 'comment' ? 20 : 15} className='w-4 md:w-auto'/>
       }
       <span className={`${contentType !== 'comment' ? 'text-sm' : ''} opacity-70`}>{likesCount?.length}</span>
     </button>
