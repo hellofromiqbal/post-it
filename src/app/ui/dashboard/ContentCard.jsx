@@ -14,7 +14,7 @@ import { generateDate } from '@/helpers/dateGenerator';
 const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
   const currentUser = useSelector(state => state.currentUser.value);
   return (
-    <div className={`flex flex-row gap-4 w-full ${customPadding}`}>
+    <div className={`flex flex-row gap-4 w-full ${customPadding} border-b-[.5px] border-b-gray-700`}>
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
           <div className='w-[40px] md:w-[50px] h-[40px] md:h-[50px] rounded-full bg-light relative overflow-hidden'>
