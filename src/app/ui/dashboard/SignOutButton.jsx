@@ -21,7 +21,7 @@ const SignOutButton = () => {
 
   return (
     <button
-      className='text-light hover:text-black hover:bg-green-500 font-medium p-4 flex items-center gap-4'
+      className='hidden md:flex items-center gap-4 text-light hover:text-black hover:bg-green-500 font-medium p-4'
       onClick={handleSignOut}
     >
       <IoLogOut size={25}/>

@@ -7,8 +7,10 @@ import TrendingList from './TrendingList';
 const LeftSide = () => {
   return (
     <div className='flex flex-col gap-4'>
-      <Navbar/>
-      <div className='lg:hidden'>
+      <div className='fixed md:static w-full z-10 bottom-0'>
+        <Navbar/>
+      </div>
+      <div className='hidden md:block lg:hidden'>
         <TrendingList/>
       </div>
     </div>

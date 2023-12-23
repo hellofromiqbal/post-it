@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
             <h1 className='text-light text-3xl font-extrabold'>Post<span className='text-softDark bg-green-500 px-1 rounded-md'>It</span></h1>
           </div>
           <div className='flex gap-4'>
-            <section className='hidden md:block md:basis-1/4 lg:basis-1/4'>
+            <section className='md:basis-1/4 lg:basis-1/4'>
               <LeftSide/>
             </section>
             <section className='px-0 md:px-0 md:basis-3/4 lg:basis-2/4'>
