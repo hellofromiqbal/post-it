@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { IoLogOut } from "react-icons/io5";
 
-const SignOutButton = () => {
+const SignOutButton = ({ placement = 'navbar' }) => {
   const router = useRouter();
   const handleSignOut = async () => {
     try {
@@ -21,11 +21,11 @@ const SignOutButton = () => {
 
   return (
     <button
-      className='hidden md:flex items-center gap-4 text-light hover:text-black hover:bg-green-500 font-medium p-4'
+      className={`${placement === 'navbar' ? 'hidden p-4 hover:text-black hover:bg-green-500' : 'flex md:hidden'} md:flex items-center gap-4 text-light font-medium`}
       onClick={handleSignOut}
     >
-      <IoLogOut size={25}/>
-      <span>Sign Out</span>
+      <IoLogOut size={placement === 'navbar' ? 25 : 30}/>
+      <span className={`${placement !== 'navbar' && 'hidden'}`}>Sign Out</span>
     </button>
   )
 };
