@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             <section className='md:basis-1/4 lg:basis-1/4'>
               <LeftSide/>
             </section>
-            <section className='px-0 md:px-0 basis-full md:basis-3/4 lg:basis-2/4'>
+            <section className='px-0 md:px-0 basis-full md:basis-3/4 lg:basis-2/4 pb-14 md:pb-0'>
               {children}
             </section>
             <section className='hidden lg:block lg:basis-1/4'>
