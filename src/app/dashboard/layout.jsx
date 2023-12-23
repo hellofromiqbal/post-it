@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
           <div className='flex justify-center items-center py-2 md:py-0 sticky md:relative top-0 bg-gray-800 md:bg-transparent z-10 md:z-0 shadow-sm md:shadow-none'>
             <h1 className='text-light text-3xl font-extrabold'>Post<span className='text-softDark bg-green-500 px-1 rounded-md'>It</span></h1>
           </div>
-          <div className='flex gap-4'>
+          <div className='flex md:gap-4'>
             <section className='md:basis-1/4 lg:basis-1/4'>
               <LeftSide/>
             </section>

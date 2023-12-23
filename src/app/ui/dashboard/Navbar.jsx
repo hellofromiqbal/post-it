@@ -18,7 +18,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const currentUser = useSelector(state => state.currentUser.value);
   return (
-    <nav className='flex flex-row md:flex-col bg-softDark shadow-md rounded-md overflow-hidden'>
+    <nav className='flex flex-row md:flex-col bg-softDark shadow-md md:rounded-md overflow-hidden'>
       <Link href="/dashboard/" className={`${pathname === "/dashboard" ? 'bg-green-500 text-black' : 'text-light'} hover:text-black hover:bg-green-500 font-medium p-4 flex justify-center md:justify-normal items-center gap-4 w-full`}>
         <IoHome size={25}/>
         <span className="hidden md:block">Home</span>
