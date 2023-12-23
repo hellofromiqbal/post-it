@@ -4,7 +4,7 @@ import React from 'react';
 
 const EditProfilePage = () => {
   return (
-    <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
+    <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
       <BackButton/>
       <EditProfileForm/>
     </div>

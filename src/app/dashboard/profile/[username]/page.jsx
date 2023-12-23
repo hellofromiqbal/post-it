@@ -40,7 +40,7 @@ const ProfilePage = ({params}) => {
     return NotFoundPage();
   } else {
     return (
-      <div className='bg-softDark text-light shadow-md rounded-md flex flex-col gap-0'>
+      <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
         <BackButton/>
         <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
           <Image src={userDetails?.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>

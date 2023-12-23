@@ -13,7 +13,7 @@ const PostPage = ({params}) => {
   const allComments = useSelector(state => state.currentComments.value);
   const postComments = allComments.filter(post => post.postId === params.id);
   return (
-    <div className='bg-softDark rounded-md shadow-md text-light flex flex-col gap-0 pt-4 md:pt-0 overflow-hidden'>
+    <div className='bg-softDark md:rounded-md shadow-md text-light flex flex-col gap-0 pt-4 md:pt-0 overflow-hidden'>
       <BackButton/>
       <ContentCard data={postData} contentType='detail' customPadding='px-4 pb-4'/>
       <CreateCommentForm data={postData}/>
