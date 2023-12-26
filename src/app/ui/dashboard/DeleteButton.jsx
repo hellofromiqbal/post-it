@@ -43,7 +43,7 @@ const DeleteButton = ({id, contentType = 'post'}) => {
       className='flex gap-2 items-center'
       onClick={(e) => handleDelete(e)}
     >
-      <FaTrash className='w-[15px] md:w-[20px] h-[15px] md:h-[20px]'/>
+      <FaTrash className={`w-[15px] h-[15px] ${contentType === 'comment' ? 'md:w-[15px] md:h-[15px]' : 'md:w-[20px] md:h-[20px]'}`}/>
     </button>
   )
 };
