@@ -11,19 +11,14 @@ export const POST = async (request) => {
 
     // Existing User Checking By Email
     const isUserExist = await User.findOne({ email: reqData.email });
-    if(!isUserExist) {
-      return NextResponse.json({
-        success: false,
-        message: "User does not exist."
-      }, { status: 400 });
-    };
 
     // Password Validation
     const isPasswordMatch = await bcryptjs.compare(reqData.password, isUserExist.password);
-    if(!isPasswordMatch) {
+
+    if(!isUserExist || !isPasswordMatch) {
       return NextResponse.json({
         success: false,
-        message: "Invalid password."
+        message: "Invalid username or password."
       }, { status: 400 });
     };
 
@@ -33,17 +28,16 @@ export const POST = async (request) => {
     
     const response = NextResponse.json({
       success: true,
-      message: "Successfully signed in.",
+      message: "Signed in.",
       data: isUserExist
     }, { status: 200 });
     
     response.cookies.set("pit", token, { httpOnly: true });
-
     return response;
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "Error log in.",
+      message: "Invalid username or password.",
       error: error.message
     }, { status: 400 });
   };

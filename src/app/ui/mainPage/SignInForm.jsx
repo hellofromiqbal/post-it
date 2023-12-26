@@ -1,5 +1,6 @@
 "use client"
 
+import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,12 +17,16 @@ const SignInForm = () => {
         body: JSON.stringify(data)
       });
       if(!res.ok) {
-        throw new Error("Invalid email or password.");
+        const result = await res.json();
+        throw new Error(result.message);
       } else {
+        const result = await res.json();
+        notifySuccess(result.message);
         router.push("/dashboard");
       };
     } catch (error) {
       setErrors(error.message);
+      notifyFailed(error.message);
     };
   };
 
