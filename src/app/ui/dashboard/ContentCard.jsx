@@ -18,7 +18,9 @@ const ContentCard = ({ data, contentType = 'post', customPadding = 'p-4' }) => {
       <div>
         <Link href={`/dashboard/profile/${data?.authorUsername}`}>
           <div className='w-[40px] md:w-[50px] h-[40px] md:h-[50px] rounded-full bg-light relative overflow-hidden'>
-            <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/>
+            {data?.authorProfilePictureUrl &&
+              <Image src={data?.authorProfilePictureUrl} alt='profpic' fill className='object-cover'/>
+            }
           </div>
         </Link>
       </div>
