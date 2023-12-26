@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { notifySuccess } from '@/helpers/toaster';
+import { FaTrash } from "react-icons/fa6";
 
 const DeleteButton = ({id, contentType = 'post'}) => {
   const router = useRouter();
@@ -39,10 +40,10 @@ const DeleteButton = ({id, contentType = 'post'}) => {
 
   return (
     <button
-      className='flex gap-2 items-center opacity-70'
+      className='flex gap-2 items-center'
       onClick={(e) => handleDelete(e)}
     >
-      DELETE
+      <FaTrash className='w-[15px] md:w-[20px] h-[15px] md:h-[20px]'/>
     </button>
   )
 };
