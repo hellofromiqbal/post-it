@@ -1,5 +1,8 @@
-import React from 'react';
+"use client"
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import { FaUserCircle } from "react-icons/fa";
 import {
   IoHome,
@@ -12,6 +15,10 @@ import { usePathname } from 'next/navigation';
 
 const NavLink = ({ name, url, mobileViewOrder = 'order-none' }) => {
   const pathname = usePathname();
+  const currentUser = useSelector(state => state.currentUser.value);
+  if(name === 'profile') {
+    url = `${url}/${currentUser?.username}`
+  };
   const icons = {
     home: <IoHome className='w-[25px] h-[25px]'/>,
     explore: <IoSearch className='w-[25px] h-[25px]'/>,
