@@ -8,3 +8,12 @@ export const notifySuccess = (message) => toast(`${message}`, {
     color: '#fff'
   }
 });
+
+export const notifyFailed = (message) => toast(`${message}`, {
+  icon: '❌',
+  style: {
+    borderRadius: '10px',
+    background: '#e00202',
+    color: '#fff'
+  }
+});
