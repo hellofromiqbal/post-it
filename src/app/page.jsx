@@ -8,7 +8,7 @@ export default function Home() {
         <div className='flex flex-col text-white'>
           <h1 className='font-extrabold text-6xl md:text-8xl'>Post<span className='text-green-500'>It</span></h1>
           <p className='ps-1 font-medium text-sm md:text-base opacity-70'>Post your thoughts freely.</p>
-        </div>
+        </div>;
       </div>
       <div className='basis-[40%] md:basis-1/2 pt-8 md:pt-10 lg:pt-0 flex items-start lg:items-center h-max md:h-full'>
         <div className='flex flex-col px-8 md:px-0 gap-4 w-full md:w-2/3 mx-auto'>
@@ -19,4 +19,4 @@ export default function Home() {
       </div>
     </main>
   )
-}
+};

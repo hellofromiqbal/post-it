@@ -6,11 +6,8 @@ import { useForm } from 'react-hook-form';
 
 const SignInForm = () => {
   const router = useRouter();
-
   const [errors, setErrors] = useState();
-
-  const { register, handleSubmit, watch } = useForm();
-
+  const { register, handleSubmit } = useForm();
   const submittedData = async (data) => {
     try {
       const res = await fetch("/api/users/sign-in", {
