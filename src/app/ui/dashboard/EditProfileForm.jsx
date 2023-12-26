@@ -10,7 +10,7 @@ import { updatePost } from '@/store/currentPostsSlicer';
 import { updateLike } from '@/store/currentLikesSlicer';
 import { updateComment } from '@/store/currentCommentsSlicer';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { notifySuccess } from '@/helpers/toaster';
+import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 import { editProfileFormSchema } from '@/helpers/zodSchema';
 import DeleteAccountButton from './DeleteAccountButton';
 import VerifyEmailButton from './VerifyEmailButton';
@@ -36,7 +36,8 @@ const EditProfileForm = () => {
         body: JSON.stringify(updatedUserDetails)
       });
       if(!res.ok) {
-        throw new Error("Failed to update profile.")
+        const result = await res.json();
+        throw new Error(result.message);
       } else {
         const result = await res.json();
         dispatch(updatedCurrentUserDetails(result.data.user));
@@ -49,7 +50,7 @@ const EditProfileForm = () => {
         router.refresh();
       };
     } catch (error) {
-      console.log(error.message);
+      notifyFailed(error.message);
     };
   };
 

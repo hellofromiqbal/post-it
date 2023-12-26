@@ -14,6 +14,15 @@ export const PUT = async (request, {params}) => {
 
     updatedUsername = `@${updatedUsername}`;
 
+    // Check if updated username already taken
+    const isUsernameAlreadyTaken = await User.findOne({username: updatedUsername});
+    if(isUsernameAlreadyTaken) {
+      return NextResponse.json({
+        success: false,
+        message: "Username already taken."
+      }, { status: 400 });
+    };
+
     // Update user with matches username
     const user = await User.findOneAndUpdate({username: params.username}, {
       username: updatedUsername,
@@ -46,12 +55,13 @@ export const PUT = async (request, {params}) => {
 
     return NextResponse.json({
       success: true,
-      message: 'Profile has been updated.',
+      message: 'Profile updated.',
       data: { user, posts, likes, comments }
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
       success: false,
+      message: 'Error editing profile.',
       error: error.message
     }, { status: 400 });
   };
