@@ -1,7 +1,7 @@
 "use client"
 
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { IoLogOut } from "react-icons/io5";
 
 const SignOutButton = ({ placement = 'navbar' }) => {
