@@ -30,7 +30,7 @@ export const GET = async () => {
     return NextResponse.json({
       success: true,
       message: 'Successfully get posts.',
-      data: posts
+      data: posts.reverse()
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({

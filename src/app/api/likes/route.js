@@ -29,7 +29,7 @@ export const GET = async () => {
     return NextResponse.json({
       success: true,
       message: 'Successfully fetched likes.',
-      data: likes
+      data: likes.reverse()
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
