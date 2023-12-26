@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { IoLogOut } from "react-icons/io5";
+import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 
 const SignOutButton = ({ placement = 'navbar' }) => {
   const router = useRouter();
@@ -10,12 +11,15 @@ const SignOutButton = ({ placement = 'navbar' }) => {
     try {
       const res = await fetch("/api/users/sign-out", { cache: 'no-store' });
       if(!res.ok) {
-        throw new Error("Failed to sign out.");
+        const result = await res.json();
+        throw new Error(result.error);
       } else {
+        const result = await res.json();
+        notifySuccess(result.message);
         router.push("/");
       };
     } catch (error) {
-      console.log(error.message);
+      notifyFailed(error.message);
     };
   };
 
