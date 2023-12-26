@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CreatePostForm from '../ui/dashboard/CreatePostForm';
 import Feeds from '../ui/dashboard/Feeds';
 
