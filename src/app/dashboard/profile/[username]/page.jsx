@@ -43,7 +43,9 @@ const ProfilePage = ({params}) => {
       <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
         <BackButton/>
         <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
-          <Image src={userDetails?.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
+          {userDetails?.bgProfilePictureUrl &&
+            <Image src={userDetails?.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
+          }
           <div className='w-[150px] h-[150px] rounded-full bg-light absolute -bottom-[50px] right-4 z-10 overflow-hidden place-self-center border-4 border-softDark'>
             <Image src={userDetails?.profilePictureUrl} alt='profpic' fill className='object-cover'/>
           </div>
