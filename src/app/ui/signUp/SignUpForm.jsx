@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { signUpFormSchema } from '@/helpers/zodSchema';
-import { notifySuccess } from '@/helpers/toaster';
+import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -18,14 +18,15 @@ const SignUpForm = () => {
         body: JSON.stringify(data)
       });
       if(!res.ok) {
-        throw new Error("Failed to create new user.");
+        const result = await res.json();
+        throw new Error(result.message);
       } else {
         const result = await res.json();
         notifySuccess(result.message);
         router.push("/");
       };
     } catch (error) {
-      console.log(error.message);
+      notifyFailed(error.message);
     };
   };
 
