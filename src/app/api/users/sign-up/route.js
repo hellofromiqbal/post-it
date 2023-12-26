@@ -13,7 +13,7 @@ export const POST = async (request) => {
     if(isUserExist) {
       return NextResponse.json({
         success: false,
-        message: 'User with the email already exist',
+        message: 'Account with the email already exist.',
       }, { status: 400 });
     };
 
@@ -34,7 +34,7 @@ export const POST = async (request) => {
     });
     return NextResponse.json({
       success: true,
-      message: "New user has been created."
+      message: "Account created successfully."
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
