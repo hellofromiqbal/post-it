@@ -7,7 +7,7 @@ import { fetchCurrentPosts } from './currentPostsSlicer';
 import { fetchCurrentComments } from './currentCommentsSlicer';
 import { fetchCurrentLikes } from './currentLikesSlicer';
 
-export const UserProvider = ({ children }) => {
+export const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     fetch('/api/users/profile', { cache: 'no-store' })
