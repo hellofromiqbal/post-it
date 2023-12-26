@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { notifySuccess } from '@/helpers/toaster';
+import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 import { createPostFormSchema } from '@/helpers/zodSchema';
 
 const CreatePostForm = () => {
@@ -30,7 +30,7 @@ const CreatePostForm = () => {
         body: JSON.stringify(newPost)
       });
       if(!res.ok) {
-        throw new Error("Failed to post.")
+        throw new Error("Failed creating a post.");
       } else {
         const result = await res.json();
         dispatch(createPost(result.data));
@@ -39,7 +39,7 @@ const CreatePostForm = () => {
         router.refresh();
       };
     } catch (error) {
-      console.log(error.message);
+      notifyFailed(error.message);
     };
   };
 

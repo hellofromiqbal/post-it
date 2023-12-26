@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react';
 import CreatePostForm from '../ui/dashboard/CreatePostForm';
 import Feeds from '../ui/dashboard/Feeds';
