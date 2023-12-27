@@ -9,11 +9,13 @@ import UserPosts from '@/app/ui/dashboard/UserPosts';
 import { useSelector } from 'react-redux';
 import NotFoundPage from '../not-found';
 import FollowButton from '@/app/ui/dashboard/FollowButton';
+import UnfollowButton from '@/app/ui/dashboard/UnfollowButton';
 
 const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
   const [isPostsFocused, setIsPostsFocused] = useState(true);
   const currentUser = useSelector(state => state.currentUser.value);
+  const alreadyFollowedUser = currentUser?.following.find((user) => user.username === userDetails.username);
 
   useEffect(() => {
     const fetchData = async (apiUrl) => {
@@ -89,6 +91,9 @@ const ProfilePage = ({params}) => {
           <div className='flex items-center gap-4'>
             {userDetails?.username === currentUser?.username ?
               <Link href={`/dashboard/profile/${userDetails?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
+              :
+              alreadyFollowedUser ?
+              <UnfollowButton currentUser={currentUser} userToBeFollowed={userDetails}/>
               :
               <FollowButton currentUser={currentUser} userToBeFollowed={userDetails}/>
             }
