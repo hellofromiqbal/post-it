@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import NotFoundPage from '../not-found';
 import FollowButton from '@/app/ui/dashboard/FollowButton';
 import UnfollowButton from '@/app/ui/dashboard/UnfollowButton';
+import ProfileImageSection from '@/app/ui/dashboard/ProfileImageSection';
 
 const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
@@ -32,14 +33,7 @@ const ProfilePage = ({params}) => {
     return (
       <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
         <BackButton/>
-        <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
-          {userDetails?.bgProfilePictureUrl &&
-            <Image src={userDetails?.bgProfilePictureUrl} alt='bgprofpic' fill className='object-cover'/>
-          }
-          <div className='w-[150px] h-[150px] rounded-full bg-light absolute -bottom-[50px] right-4 z-10 overflow-hidden place-self-center border-4 border-softDark'>
-            <Image src={userDetails?.profilePictureUrl} alt='profpic' fill className='object-cover'/>
-          </div>
-        </div>
+        <ProfileImageSection profileOwner={params.username}/>
         <div className='flex flex-col gap-2 p-4'>
           <div>
             <h2 className='font-bold text-xl'>{userDetails?.fullname}</h2>
