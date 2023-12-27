@@ -7,11 +7,13 @@ export const PUT = async (request, {params}) => {
   try {
     await connectMongoDB();
     const { username, fullname, profilePictureUrl } = await request.json();
-    const user = await User.findOneAndUpdate({username: params.username}, { $push: { following: { username, fullname, profilePictureUrl } } }, { new: true });
+    const followingUser = await User.findOneAndUpdate({username: params.username}, { $push: { following: { username, fullname, profilePictureUrl } } }, { new: true });
+    const followedUser = await User.findOneAndUpdate({username}, { $push: { followers: { username: followingUser.username, fullname: followingUser.fullname, profilePictureUrl: followingUser.profilePictureUrl } } }, { new: true });
+    const result = { followingUser, followedUser };
     return NextResponse.json({
       success: true,
       message: 'Followed.',
-      data: user
+      data: result
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({
