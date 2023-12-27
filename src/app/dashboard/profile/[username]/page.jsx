@@ -1,15 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image';
-import Link from 'next/link';
-import { IoLocation, IoCalendar } from "react-icons/io5";
 import BackButton from '@/app/ui/dashboard/BackButton';
 import UserPosts from '@/app/ui/dashboard/UserPosts';
-import { useSelector } from 'react-redux';
 import NotFoundPage from '../not-found';
-import FollowButton from '@/app/ui/dashboard/FollowButton';
-import UnfollowButton from '@/app/ui/dashboard/UnfollowButton';
 import ProfileImageSection from '@/app/ui/dashboard/ProfileImageSection';
 import ProfileDetailsSection from '@/app/ui/dashboard/ProfileDetailsSection';
 import ProfileNavSection from '@/app/ui/dashboard/ProfileNavSection';
