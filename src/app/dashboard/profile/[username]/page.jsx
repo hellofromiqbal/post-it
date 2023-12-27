@@ -15,9 +15,7 @@ const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
   const [isPostsFocused, setIsPostsFocused] = useState(true);
   const currentUser = useSelector(state => state.currentUser.value);
-  console.log(currentUser);
   const alreadyFollowedUser = currentUser?.following.find((user) => user.username === userDetails.username);
-  // const [alreadyFollowedUser, setAlreadyFollowedUser] = useState(false);
 
   useEffect(() => {
     fetch(`/api/users/profile/${params.username}`, { cache: 'no-store' })
