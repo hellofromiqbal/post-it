@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const ProfileImageSection = ({profileOwner}) => {
-  const [userDetails, setUserDetails] = useState();
-
-  useEffect(() => {
-    fetch(`/api/users/profile/${profileOwner}`, { cache: 'no-store' })
-      .then(res => res.json())
-      .then(data => {
-        setUserDetails(data.data);
-      })
-      .catch(err => console.log(err.message));
-  }, []);
-
+const ProfileImageSection = ({userDetails}) => {
   return (
     <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
       {userDetails?.bgProfilePictureUrl &&
