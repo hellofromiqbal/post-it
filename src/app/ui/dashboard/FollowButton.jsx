@@ -15,12 +15,12 @@ const FollowButton = ({ currentUser, userToBeFollowed }) => {
         body: JSON.stringify(userToBeFollowed)
       });
       if(!res.json) {
-        const { followingUser, followedUser } = await res.json();
-        throw new Error(followingUser.data.message);
+        const result = await res.json();
+        throw new Error(result.message);
       } else {
-        const { followingUser, followedUser } = await res.json();
-        dispatch(updatedCurrentUserDetails(followingUser.data));
-        notifySuccess(followingUser.data.message);
+        const result = await res.json();
+        dispatch(updatedCurrentUserDetails(result.data.followingUser));
+        notifySuccess(result.message);
       };
     } catch (error) {
       notifyFailed(error.message);
