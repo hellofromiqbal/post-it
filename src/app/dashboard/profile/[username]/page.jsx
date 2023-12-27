@@ -28,7 +28,7 @@ const ProfilePage = ({params}) => {
       <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
         <BackButton/>
         <ProfileImageSection userDetails={userDetails} setUserDetails={setUserDetails}/>
-        {/* <ProfileDetailsSection profileOwner={params.username}/> */}
+        <ProfileDetailsSection userDetails={userDetails} setUserDetails={setUserDetails}/>
         <ProfileNavSection isPostsFocused={isPostsFocused} setIsPostsFocused={setIsPostsFocused}/>
         {isPostsFocused ?
           <UserPosts userId={userDetails?._id}/>
