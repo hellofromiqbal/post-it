@@ -3,16 +3,16 @@ import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 import { useDispatch } from 'react-redux';
 import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 
-const UnfollowButton = ({ currentUser, userToBeFollowed }) => {
+const UnfollowButton = ({ currentUser, userToBeUnfollowed }) => {
   const dispatch = useDispatch();
 
   const handleClick = async () => {
     try {
-      const res = await fetch(`/api/users/following/${currentUser?.username}`, {
+      const res = await fetch(`/api/users/unfollowing/${currentUser?.username}`, {
         cache: 'no-store',
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(userToBeFollowed)
+        body: JSON.stringify(userToBeUnfollowed)
       });
       if(!res.json) {
         const result = await res.json();

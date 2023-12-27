@@ -93,7 +93,7 @@ const ProfilePage = ({params}) => {
               <Link href={`/dashboard/profile/${userDetails?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
               :
               alreadyFollowedUser ?
-              <UnfollowButton currentUser={currentUser} userToBeFollowed={userDetails}/>
+              <UnfollowButton currentUser={currentUser} userToBeUnfollowed={userDetails}/>
               :
               <FollowButton currentUser={currentUser} userToBeFollowed={userDetails}/>
             }
