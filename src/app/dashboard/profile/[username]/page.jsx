@@ -8,6 +8,7 @@ import BackButton from '@/app/ui/dashboard/BackButton';
 import UserPosts from '@/app/ui/dashboard/UserPosts';
 import { useSelector } from 'react-redux';
 import NotFoundPage from '../not-found';
+import FollowButton from '@/app/ui/dashboard/FollowButton';
 
 const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
@@ -77,19 +78,21 @@ const ProfilePage = ({params}) => {
           </div>
           <div className='flex items-center gap-4'>
             <span className='flex items-center gap-1'>
-              <p className='text-sm font-semibold'>582</p>
+              <p className='text-sm font-semibold'>{userDetails?.following?.length}</p>
               <p className='text-sm opacity-70'>Following</p>
             </span>
             <span className='flex items-center gap-1'>
-              <p className='text-sm font-semibold'>64.3M</p>
+              <p className='text-sm font-semibold'>{userDetails?.followers?.length}</p>
               <p className='text-sm opacity-70'>Followers</p>
             </span>
           </div>
-          {userDetails?.username === currentUser?.username &&
-            <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4'>
+            {userDetails?.username === currentUser?.username ?
               <Link href={`/dashboard/profile/${userDetails?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
-            </div>
-          }
+              :
+              <FollowButton currentUser={currentUser} userToBeFollowed={userDetails}/>
+            }
+          </div>
         </div>
         <div className='flex justify-evenly border-y border-gray-700'>
           <button className={`w-full p-4 ${isPostsFocused && 'bg-green-500 text-black'} hover:bg-green-500 hover:text-black font-medium`} onClick={() => setIsPostsFocused(true)}>Posts</button>

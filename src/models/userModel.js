@@ -1,5 +1,21 @@
 import mongoose, { Schema } from 'mongoose';
 
+const userFollows = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  fullname: {
+    type: String,
+    required: true
+  },
+  profilePictureUrl: {
+    type: String,
+    default: ""
+  }
+});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -44,11 +60,11 @@ const userSchema = new Schema({
     default: false
   },
   following: {
-    type: [String],
+    type: [userFollows],
     default: []
   },
   followers: {
-    type: [String],
+    type: [userFollows],
     default: []
   },
   verifyEmailToken: String,
