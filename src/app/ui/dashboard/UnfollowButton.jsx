@@ -19,7 +19,7 @@ const UnfollowButton = ({ currentUser, userToBeUnfollowed }) => {
         throw new Error(result.message);
       } else {
         const result = await res.json();
-        dispatch(updatedCurrentUserDetails(result?.unfollowingUser.data));
+        dispatch(updatedCurrentUserDetails(result.data.unfollowingUser));
         notifySuccess(result.message);
       };
     } catch (error) {
