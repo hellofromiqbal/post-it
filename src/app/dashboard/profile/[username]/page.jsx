@@ -15,28 +15,17 @@ const ProfilePage = ({params}) => {
   const [userDetails, setUserDetails] = useState({});
   const [isPostsFocused, setIsPostsFocused] = useState(true);
   const currentUser = useSelector(state => state.currentUser.value);
+  console.log(currentUser);
   const alreadyFollowedUser = currentUser?.following.find((user) => user.username === userDetails.username);
+  // const [alreadyFollowedUser, setAlreadyFollowedUser] = useState(false);
 
   useEffect(() => {
-    const fetchData = async (apiUrl) => {
-      const res = await fetch(apiUrl, { cache: 'no-store' });
-      if(!res.ok) {
-        throw new Error("Failed to fetch data");
-      } else {
-        return res.json();
-      };
-    };
-
-    const apiUrls = [
-      `/api/users/profile/${params.username}`,
-    ];
-
-    Promise.all(apiUrls.map(url => fetchData(url)))
-      .then(([value1]) => {
-        setUserDetails(value1.data);
+    fetch(`/api/users/profile/${params.username}`, { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => {
+        setUserDetails(data.data);
       })
-      .catch(error => error.message);
-    
+      .catch(err => console.log(err.message));
   }, []);
 
   if(!userDetails) {
