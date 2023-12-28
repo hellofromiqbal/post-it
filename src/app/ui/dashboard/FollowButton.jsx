@@ -1,13 +1,16 @@
 import React from 'react';
 import { notifyFailed, notifySuccess } from '@/helpers/toaster';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 
-const FollowButton = ({ currentUser, profileOwner }) => {
+const FollowButton = ({ profileOwner }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.currentUser.value);
+  const userFollowed = currentUser?.following?.find(user => user.username === profileOwner.username);
+
   const handleClick = async () => {
     try {
-      const res = await fetch(`/api/users/following/${currentUser?.username}`, {
+      const res = await fetch(`/api/users/${userFollowed ? 'unfollowing' : 'following'}/${currentUser?.username}`, {
         cache: 'no-store',
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
@@ -18,7 +21,11 @@ const FollowButton = ({ currentUser, profileOwner }) => {
         throw new Error(result.message);
       } else {
         const result = await res.json();
-        dispatch(updatedCurrentUserDetails(result.data.followingUser));
+        if(userFollowed) {
+          dispatch(updatedCurrentUserDetails(result.data.unfollowingUser));
+        } else {
+          dispatch(updatedCurrentUserDetails(result.data.followingUser));
+        }
         notifySuccess(result.message);
       };
     } catch (error) {
@@ -29,7 +36,7 @@ const FollowButton = ({ currentUser, profileOwner }) => {
     <button
       className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'
       onClick={handleClick}
-    >Follow</button>
+    >{userFollowed ? 'Unfollow' : 'Follow'}</button>
   )
 };
 

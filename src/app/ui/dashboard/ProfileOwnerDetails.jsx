@@ -57,7 +57,8 @@ const ProfileOwnerDetails = ({ profileOwner }) => {
           {profileOwner?.username === currentUser?.username ?
             <Link href={`/dashboard/profile/${profileOwner?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
             :
-            <FollowButton currentUser={currentUser} profileOwner={profileOwner}/>
+            // <FollowButton profileOwner={profileOwner}/>
+            ''
           }
         </div>
       </div>
