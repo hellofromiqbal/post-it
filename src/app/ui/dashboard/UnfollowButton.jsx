@@ -3,7 +3,7 @@ import { notifyFailed, notifySuccess } from '@/helpers/toaster';
 import { useDispatch } from 'react-redux';
 import { updatedCurrentUserDetails } from '@/store/currentUserSlicer';
 
-const UnfollowButton = ({ currentUser, userToBeUnfollowed }) => {
+const UnfollowButton = ({ currentUser, profileOwner }) => {
   const dispatch = useDispatch();
 
   const handleClick = async () => {
@@ -12,7 +12,7 @@ const UnfollowButton = ({ currentUser, userToBeUnfollowed }) => {
         cache: 'no-store',
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(userToBeUnfollowed)
+        body: JSON.stringify(profileOwner)
       });
       if(!res.json) {
         const result = await res.json();

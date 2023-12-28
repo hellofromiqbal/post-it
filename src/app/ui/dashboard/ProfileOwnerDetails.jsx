@@ -4,10 +4,10 @@ import Link from 'next/link';
 import FollowButton from '@/app/ui/dashboard/FollowButton';
 import { useSelector } from 'react-redux';
 import { IoLocation, IoCalendar } from "react-icons/io5";
+import UnfollowButton from './UnfollowButton';
 
 const ProfileOwnerDetails = ({ profileOwner }) => {
   const currentUser = useSelector(state => state.currentUser.value);
-
   return (
     <>
       <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
@@ -57,7 +57,7 @@ const ProfileOwnerDetails = ({ profileOwner }) => {
           {profileOwner?.username === currentUser?.username ?
             <Link href={`/dashboard/profile/${profileOwner?.username}/edit`} className='bg-green-500 text-black font-semibold rounded-full px-4 py-2 text-sm'>Edit Profile</Link>
             :
-            <FollowButton currentUser={currentUser} userToBeFollowed={profileOwner}/>
+            <FollowButton currentUser={currentUser} profileOwner={profileOwner}/>
           }
         </div>
       </div>
