@@ -14,7 +14,7 @@ const CommentPage = ({params}) => {
   return (
     <div className='bg-softDark md:rounded-md shadow-md text-light flex flex-col gap-0 pt-4 md:pt-0 overflow-hidden'>
       <BackButton/>
-      <ContentCard data={commentData} contentType='detail' customPadding='px-4 pb-4'/>
+      <ContentCard data={commentData} contentType='comment' customPadding='px-4 pb-4'/>
       <CreateCommentForm data={commentData}/>
       <Comments comments={commentReplies}/>
     </div>
