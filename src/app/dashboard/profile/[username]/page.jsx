@@ -27,7 +27,7 @@ const ProfilePage = ({params}) => {
     return (
       <div className='bg-softDark text-light shadow-md md:rounded-md flex flex-col gap-0'>
         <BackButton/>
-        <ProfileImageSection userDetails={userDetails} setUserDetails={setUserDetails}/>
+        <ProfileImageSection userDetails={userDetails}/>
         <ProfileDetailsSection userDetails={userDetails} setUserDetails={setUserDetails}/>
         <ProfileNavSection isPostsFocused={isPostsFocused} setIsPostsFocused={setIsPostsFocused}/>
         {isPostsFocused ?

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const ProfileImageSection = ({userDetails}) => {
+const ProfileImageSection = ({ userDetails }) => {
   return (
     <div className='bg-light min-h-[180px] relative bg-center bg-cover bg-no-repeat'>
       {userDetails?.bgProfilePictureUrl &&
