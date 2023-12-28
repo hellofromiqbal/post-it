@@ -71,6 +71,12 @@ export const GET = async (request, {params}) => {
   try {
     await connectMongoDB();
     const userDetails = await User.findOne({username: params.username});
+    if(!userDetails) {
+      return NextResponse.json({
+        success: false,
+        message: 'Error fetching user details.',
+      }, { status: 400 });
+    };
     return NextResponse.json({
       success: true,
       message: 'User detail fetched.',
@@ -80,6 +86,6 @@ export const GET = async (request, {params}) => {
     return NextResponse.json({
       success: true,
       error: error.message
-    }, { status: 400 });
+    }, { status: 500 });
   };
 };

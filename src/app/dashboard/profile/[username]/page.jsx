@@ -2,9 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import BackButton from '@/app/ui/dashboard/BackButton';
-import UserPosts from '@/app/ui/dashboard/UserPosts';
 import NotFoundPage from '../not-found';
-import ProfileNavSection from '@/app/ui/dashboard/ProfileNavSection';
 import ProfileOwnerDetails from '@/app/ui/dashboard/ProfileOwnerDetails';
 import ProfileOwnerContent from '@/app/ui/dashboard/ProfileOwnerContent';
 
@@ -16,7 +14,9 @@ const ProfilePage = ({params}) => {
       .then(data => {
         setProfileOwner(data.data);
       })
-      .catch(err => console.log(err.message));
+      .catch(err => {
+        console.log(err.message);
+      });
   }, []);
 
   return (
